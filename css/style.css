@@ -1,0 +1,59 @@
+.titulo
+{
+  background-image: url('../images/backgroundtitle.jpg');
+  border-bottom-width: 5px;
+  border-bottom-color: green;
+  border-bottom-style: inset;
+}
+
+.titulo h1
+{
+  font-size: 5em;
+  font-family: rockwell, serif, sans-serif, arial;
+  text-align: center;
+  color : black;
+}
+
+.navbar
+{
+  background-image: url('../images/backgroundnavbar.jpg');
+  background-repeat: repeat;
+
+}
+
+.nav a{
+  color: lightgreen;
+  font-weight: bold;
+}
+
+.nav li a:hover{
+  background-color: black;
+}
+
+.thumbnail, #loginForm{
+  border-width: 0.3em;
+  border-color: lightgreen;
+  border-style: solid;
+  background-image: url("../images/backgroundnoticias.jpg");
+}
+
+.carousel{
+  border-width: 0.3em;
+  border-color: lightgreen;
+  border-style: solid;
+}
+
+p, li, label, tr{
+  color: rgb(9, 193, 91);
+}
+
+footer{
+  background-color: lightgreen;
+  text-align: center;
+  font-size: 2em;
+}
+
+
+body{
+  background-image: url("../images/backgroundbody.jpg");
+}
