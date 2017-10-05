@@ -14,25 +14,25 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
       <div class="item active">
-        <img src="ads/AD1.jpg" alt="Cosquin-Rock-Poster">
+        <img src="images/ads/AD1.jpg" alt="Cosquin-Rock-Poster">
       </div>
       <div class="item">
-        <img src="ads/AD2.jpg" alt="Loolapalooza-Poster">
+        <img src="images/ads/AD2.jpg" alt="Loolapalooza-Poster">
       </div>
       <div class="item">
-        <img src="ads/AD3.jpg" alt="Rock-In-Rio-Poster">
+        <img src="images/ads/AD3.jpg" alt="Rock-In-Rio-Poster">
       </div>
       <div class="item">
-        <img src="ads/AD4.jpg" alt="Lorem-Rock-Festival">
+        <img src="images/ads/AD4.jpg" alt="Lorem-Rock-Festival">
       </div>
       <div class="item">
-        <img src="ads/AD5.jpg" alt="Band-Live-Poster">
+        <img src="images/ads/AD5.jpg" alt="Band-Live-Poster">
       </div>
       <div class="item">
-        <img src="ads/AD6.jpg" alt="Rock-Festival">
+        <img src="images/ads/AD6.jpg" alt="Rock-Festival">
       </div>
       <div class="item">
-        <img src="ads/AD7.jpg" alt="Rock-Festival">
+        <img src="images/ads/AD7.jpg" alt="Rock-Festival">
       </div>
     </div>
 
