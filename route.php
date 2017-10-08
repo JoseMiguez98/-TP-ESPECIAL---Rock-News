@@ -1,6 +1,11 @@
 <?php
 include_once 'config/ConfigApp.php';
-include_once 'index.php';
+include_once 'controller/Controller.php';
+include_once 'view/View.php';
+include_once 'model/Model.php';
+include_once 'controller/newsController.php';
+include_once 'controller/indexController.php';
+include_once 'controller/signUpController.php';
 
 function parseURL($url){
   //Explodeo la url para convertirla en un array
@@ -19,13 +24,15 @@ if(isset($_GET['action'])){
   $action = $parsedURL[ConfigApp::$ACTION];
   //Controlo si existe la accion pedida en el arreglo de acciones disponibles de 'ConfigApp.php'
   if(array_key_exists($action , ConfigApp::$ACTIONS)){
+    $action = explode('#', ConfigApp::$ACTIONS[$action]);
+    $controller = new $action[0]();
+    $method = $action[1];
     $params = $parsedURL[ConfigApp::$PARAMS];
-    $method = ConfigApp::$ACTIONS[$action];
     if(isset($params) && $params != null){
-      echo $method($params);
+      echo $controller->$method($params);
     }
     else{
-      echo $method();
+      echo $controller->$method();
     }
   }
 }

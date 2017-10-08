@@ -3,9 +3,9 @@
     public static $ACTION = 'action';
     public static $PARAMS = 'params';
     public static $ACTIONS = [
-      'home' => 'home',
-      '' => 'index',
-      'signUp' => 'signUp'
+      '' => 'indexController#show',
+      'home' => 'newsController#show',
+      'signUp' => 'signUpController#show'
     ];
   }
 ?>
