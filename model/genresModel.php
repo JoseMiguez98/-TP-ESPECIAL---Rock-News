@@ -9,5 +9,10 @@ class genresModel extends Model
     $sentence->execute();
     return $sentence->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  function addGenre($name, $country){
+    $sentence = $this->db->prepare('INSERT INTO genero(nombre, pais_origen) VALUES(?,?)');
+    $sentence->execute([$name, $country]);
+  }
 }
  ?>

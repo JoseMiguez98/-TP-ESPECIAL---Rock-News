@@ -14,5 +14,14 @@ class genresController extends Controller
     $genres = $this->model->getGenres();
     $this->view->displayGenres($genres);
   }
+
+  function add(){
+    if(isset($_POST['name']) && !empty($_POST['name'])){
+      $name = $_POST['name'];
+      $country = isset($_POST['country']) ? $_POST['country'] : 'Desconocido';
+      $this->model->addGenre($name, $country);
+      header('Location:'.HOME);
+    }
+  }
 }
  ?>

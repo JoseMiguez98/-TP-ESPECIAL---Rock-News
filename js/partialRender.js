@@ -35,7 +35,7 @@ $(document).ready(function(){
       'success' : inyect
     });
   });
-
+  
   $.ajax({
     'url' : 'home',
     "contentType" : "application/json; charset=utf-8",

@@ -7,7 +7,8 @@
       'home' => 'newsController#show',
       'signUp' => 'signUpController#show',
       'genresTable' => 'genresController#show',
-      'albumsTable' => 'albumsController#show'
+      'albumsTable' => 'albumsController#show',
+      'addGenre' => 'genresController#add'
     ];
   }
 ?>
