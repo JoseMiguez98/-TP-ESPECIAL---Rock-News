@@ -4,7 +4,7 @@
  */
 class signUpView extends View
 {
-  function showForm(){
+  function displayForm(){
     $this->smarty->display('templates/sections/sign_up.tpl');
   }
 }

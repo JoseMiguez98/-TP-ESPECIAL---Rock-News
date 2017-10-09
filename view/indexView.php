@@ -4,7 +4,7 @@
  */
 class indexView extends View
 {
-  function showIndex(){
+  function displayIndex(){
     $this->smarty->display('templates/index.tpl');
   }
 }

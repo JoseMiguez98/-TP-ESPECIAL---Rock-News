@@ -9,7 +9,7 @@ class newsController extends Controller
   }
 
   function show(){
-    $this->view->showNews();
+    $this->view->displayNews();
   }
 }
  ?>

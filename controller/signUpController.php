@@ -10,7 +10,7 @@ class signUpController extends Controller
   }
 
   function show(){
-    $this->view->showForm();
+    $this->view->displayForm();
   }
 }
 

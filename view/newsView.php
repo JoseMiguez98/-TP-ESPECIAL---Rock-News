@@ -10,7 +10,7 @@ class newsView extends View
      parent::__construct();
   }
 
-  function showNews(){
+  function displayNews(){
     $this->smarty->display('templates/home.tpl');
   }
 }

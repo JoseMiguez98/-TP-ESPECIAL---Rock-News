@@ -10,7 +10,7 @@ class indexController extends Controller
   }
 
   function show(){
-    $this->view->showIndex();
+    $this->view->displayIndex();
   }
 }
 

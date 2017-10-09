@@ -32,7 +32,8 @@
         <div class="collapse navbar-collapse" id="barra-de-navegacion">
           <ul class="nav navbar-nav">
             <li><a href="#" class="navLink" data-target='home' target="_blank">Pagina Principal<span class="sr-only">(current)</span></a></li>
-            <li><a href="#" class="navLink" data-target='test'>Top 10 Generos</a></li>
+            <li><a href="#" class="navLink" data-target='genresTable'>Top Generos</a></li>
+            <li><a href="#" class="navLink" data-target='albumsTable'>Top Albums</a></li>
             <li><a href="#" class="navLink" data-target='signUp'>Registrarse</a></li>
           </ul>
         </div>

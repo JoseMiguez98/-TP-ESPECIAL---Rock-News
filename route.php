@@ -6,6 +6,8 @@ include_once 'model/Model.php';
 include_once 'controller/newsController.php';
 include_once 'controller/indexController.php';
 include_once 'controller/signUpController.php';
+include_once 'controller/genresController.php';
+include_once 'controller/albumsController.php';
 
 function parseURL($url){
   //Explodeo la url para convertirla en un array
