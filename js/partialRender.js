@@ -15,7 +15,7 @@ $(document).ready(function(){
 
   function inyect(data,textStatus, jqXHR){
     let dataMain = parseData(data, '.dataMain');
-      let dataFooter = parseData(data, '.dataFooter');
+    let dataFooter = parseData(data, '.dataFooter');
     // let dataFooter = $(data).find(".dataFooter")['prevObject'];
     // console.log(dataMain);
     // console.log(dataFooter);
@@ -35,7 +35,13 @@ $(document).ready(function(){
       'success' : inyect
     });
   });
-  
+
+  $('form').on("submit", function(event) {
+      let action = $(this).attr('action'); //wrap this in jQuery
+
+      alert(action);
+  });
+
   $.ajax({
     'url' : 'home',
     "contentType" : "application/json; charset=utf-8",

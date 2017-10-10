@@ -8,7 +8,9 @@
       'signUp' => 'signUpController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
-      'addGenre' => 'genresController#add'
+      'addGenre' => 'genresController#add',
+      'deleteGenre' => 'genresController#delete',
+      'updateGenre' => 'genresController#update'
     ];
   }
 ?>

@@ -22,6 +22,23 @@ class genresController extends Controller
       $this->model->addGenre($name, $country);
       header('Location:'.HOME);
     }
+    header('Location:'.HOME);
+  }
+
+  function delete($id_genre){
+    $this->model->deleteGenre($id_genre[0]);
+    header('Location:'.HOME);
+  }
+
+  function update(){
+    if(isset($_POST['name']) && !empty($_POST['name'])){
+      $name = $_POST['name'];
+      $id_genre = $_POST['id_genre'];
+      $country = isset($_POST['country']) ? $_POST['country'] : null;
+      $this->model->updateGenre($name, $country, $id_genre);
+      header('Location:'.HOME);
+    }
+    header('Location:'.HOME);
   }
 }
- ?>
+?>
