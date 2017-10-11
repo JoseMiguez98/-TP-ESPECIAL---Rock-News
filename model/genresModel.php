@@ -15,8 +15,8 @@ class genresModel extends Model
   }
 
   function updateGenre($name, $country, $id_genre){
-    $sentence = $this->db->prepare("UPDATE `genero` SET `nombre` = '$name', `pais_origen` = '$country' WHERE `genero`.`id_genero` = $id_genre");
-    return $sentence->execute();
+    $sentence = $this->db->prepare("UPDATE `genero` SET `nombre` = ?, `pais_origen` = ? WHERE `genero`.`id_genero` = $id_genre");
+    return $sentence->execute([$name, $country]);
   }
 }
 ?>

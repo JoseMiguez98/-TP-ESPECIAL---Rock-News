@@ -54,7 +54,7 @@
     <h2 class="text-warning">Editar:</h2>
     <form action="updateAlbum" method="post">
       <label for="dropdown-album">ID Album:</label>
-      <select class="form-control" id="dropdown-album" name="id_genre">
+      <select class="form-control" id="dropdown-album" name="id_album">
         {foreach from=$albums item=album}
         <option>{$album['id_album']}</option>
         {/foreach}
@@ -69,7 +69,7 @@
       </div>
       <div class="form-group">
         <label for="artist">Artista/Grupo</label>
-        <input type="text" class="form-control" name="year" id="year" placeholder="John Lennon">
+        <input type="text" class="form-control" name="artist" id="artist" placeholder="John Lennon">
       </div>
       <label for="dropdown-genre">Genero:</label>
       <select class="form-control" id="dropdown-genre" name="genre">
