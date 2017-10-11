@@ -11,7 +11,8 @@
       'addGenre' => 'genresController#add',
       'deleteGenre' => 'genresController#delete',
       'updateGenre' => 'genresController#update',
-      'addAlbum' => 'albumsController#add'
+      'addAlbum' => 'albumsController#add',
+      'deleteAlbum' => 'albumsController#delete'
     ];
   }
 ?>

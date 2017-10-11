@@ -29,5 +29,10 @@ class albumsController extends Controller
     header('Location:'.HOME);
     }
   }
+
+  function delete($id_album){
+    $this->model->deleteAlbum($id_album[0]);
+    header('Location:'.HOME);
+  }
 }
 ?>

@@ -17,5 +17,10 @@ class albumsModel extends Model
     $sentence = $this->db->prepare("INSERT INTO `album`(`nombre`, `anio`, `artista`, `genero`, `id_genero`) VALUES (?,?,?,?,?)");
     $sentence->execute([$name, $year, $artist, $genre, $id_genre['id_genero']]);
   }
+
+  function deleteAlbum($id_album){
+    $sentence = $this->db->prepare("delete from album where id_album=?");
+    return $sentence->execute([$id_album]);
+  }
 }
 ?>

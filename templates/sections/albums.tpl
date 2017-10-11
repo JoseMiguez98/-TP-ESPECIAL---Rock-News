@@ -17,6 +17,7 @@
         <td>{$album['artista']}</td>
         <td>{$album['genero']}</td>
         <td>{$album['id_genero']}</td>
+        <td><a href="deleteAlbum/{$album['id_album']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
       </tr>
       {/foreach}
     </tbody>
