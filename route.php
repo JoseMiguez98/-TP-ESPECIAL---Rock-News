@@ -8,6 +8,8 @@ include_once 'controller/indexController.php';
 include_once 'controller/signUpController.php';
 include_once 'controller/genresController.php';
 include_once 'controller/albumsController.php';
+include_once 'controller/filterController.php';
+
 
 function parseURL($url){
   //Explodeo la url para convertirla en un array
