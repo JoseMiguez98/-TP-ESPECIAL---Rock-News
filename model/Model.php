@@ -11,5 +11,11 @@ class Model
     .'dbname=db_songs;charset=utf8'
     , 'root', '');
   }
+
+  function getGenres(){
+    $sentence = $this->db->prepare('select * from genero');
+    $sentence->execute();
+    return $sentence->fetchAll(PDO::FETCH_ASSOC);
+  }
 }
  ?>

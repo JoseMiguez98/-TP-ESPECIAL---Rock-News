@@ -10,8 +10,9 @@ class albumsView extends View
      parent::__construct();
   }
 
-  function displayAlbums($albums){
+  function displayAlbums($albums, $genres){
     $this->smarty->assign('albums', $albums);
+    $this->smarty->assign('genres', $genres);
     $this->smarty->display('templates/sections/albums.tpl');
   }
 }

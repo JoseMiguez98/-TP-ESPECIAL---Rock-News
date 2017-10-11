@@ -12,7 +12,22 @@ class albumsController extends Controller
 
   function show(){
     $albums = $this->model->getAlbums();
-    $this->view->displayAlbums($albums);
+    $genres = $this->model->getGenres();
+    $this->view->displayAlbums($albums, $genres);
+  }
+
+  function add(){
+    if(isset($_POST['name']) && !empty($_POST['name'])){
+      $name = $_POST['name'];
+      $year = isset($_POST['year']) ? $_POST['year'] : null;
+      $artist = isset($_POST['artist']) ? $_POST['artist'] : null;
+      $genre = $_POST['genre'];
+      $this->model->addAlbum($name, $year, $artist, $genre);
+      header('Location:'.HOME);
+    }
+    else{ //luego controlar excepcion
+    header('Location:'.HOME);
+    }
   }
 }
- ?>
+?>

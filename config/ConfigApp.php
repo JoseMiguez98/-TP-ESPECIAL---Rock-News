@@ -10,7 +10,8 @@
       'albumsTable' => 'albumsController#show',
       'addGenre' => 'genresController#add',
       'deleteGenre' => 'genresController#delete',
-      'updateGenre' => 'genresController#update'
+      'updateGenre' => 'genresController#update',
+      'addAlbum' => 'albumsController#add'
     ];
   }
 ?>

@@ -22,7 +22,9 @@ class genresController extends Controller
       $this->model->addGenre($name, $country);
       header('Location:'.HOME);
     }
-    header('Location:'.HOME);
+    else { //Luego controlar excepcion
+      header('Location:'.HOME);
+    }
   }
 
   function delete($id_genre){
@@ -38,7 +40,10 @@ class genresController extends Controller
       $this->model->updateGenre($name, $country, $id_genre);
       header('Location:'.HOME);
     }
-    header('Location:'.HOME);
+    else { //Luego controlar excepcion
+      header('Location:'.HOME);
+    }
+
   }
 }
 ?>
