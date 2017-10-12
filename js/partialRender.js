@@ -10,7 +10,7 @@ $(document).ready(function(){
     else{
       dataReturn = 2;
     }
-    return $(_data).find(_content)['prevObject'][dataReturn];
+    return $(_data).find()['prevObject'][dataReturn];
   }
 
   function inyect(data,textStatus, jqXHR){
@@ -36,17 +36,53 @@ $(document).ready(function(){
     });
   });
 
-  $('form').on("submit", function(event) {
-      let action = $(this).attr('action'); //wrap this in jQuery
-
-      alert(action);
+  //Borrar elemento de las tablas con partial render
+  $(".innerMain").on('click','.deleteButton', function(){
+    event.preventDefault();
+    let id = $(this).attr('id');
+    let action = $(this).data('target');
+    console.log(action+'/'+id);
+    $.ajax({
+      'url' : action + '/' + id,
+      "contentType" : "application/json; charset=utf-8",
+      "dataType" : "HTML",
+      'success' : function(data){
+        let table = $(data).find()['prevObject'][0];
+        $('.innerMain').html(table);
+      }
+    });
   });
 
+  //Inserto/Actualizo datos en las tablas mediante AJAX
+  $('.innerFooter').on('submit', '.refreshForm', function(event){
+    event.preventDefault();
+    let serializedData = $(this).serialize();
+    // console.log(serializedData);
+    let action = $(this).data('target');
+    $.post(action, serializedData, function(data) {
+      let table = $(data).find()['prevObject'][0];
+      console.log(table);
+      $('.innerMain').html(table);
+    });
+  });
+
+  $('.innerMain').on('click','.genreFilter', function(){
+    let filter = $(this).data('target');
+    $.ajax({
+      'url' : 'filterGenre/'+filter,
+      "contentType" : "application/json; charset=utf-8",
+      "dataType" : "HTML",
+      'success' : function(data){
+        $('.innerMain').html(data);
+      }
+    });
+  });
+
+  //AJAX trae la HOME cuando se carga el documento
   $.ajax({
     'url' : 'home',
     "contentType" : "application/json; charset=utf-8",
     "dataType" : "HTML",
     'success' : inyect
   });
-
 });

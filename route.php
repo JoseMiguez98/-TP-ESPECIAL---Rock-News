@@ -6,6 +6,7 @@ include_once 'model/Model.php';
 include_once 'controller/newsController.php';
 include_once 'controller/indexController.php';
 include_once 'controller/signUpController.php';
+include_once 'controller/signInController.php';
 include_once 'controller/genresController.php';
 include_once 'controller/albumsController.php';
 include_once 'controller/filterController.php';

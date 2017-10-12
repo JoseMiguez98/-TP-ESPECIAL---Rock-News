@@ -20,7 +20,7 @@ class genresController extends Controller
       $name = $_POST['name'];
       $country = isset($_POST['country']) ? $_POST['country'] : 'Desconocido';
       $this->model->addGenre($name, $country);
-      header('Location:'.HOME);
+      return $this->show();
     }
     else { //Luego controlar excepcion
       header('Location:'.HOME);
@@ -29,7 +29,7 @@ class genresController extends Controller
 
   function delete($id_genre){
     $this->model->deleteGenre($id_genre[0]);
-    header('Location:'.HOME);
+    return $this->show();
   }
 
   function update(){
@@ -38,7 +38,7 @@ class genresController extends Controller
       $id_genre = $_POST['id_genre'];
       $country = isset($_POST['country']) ? $_POST['country'] : null;
       $this->model->updateGenre($name, $country, $id_genre);
-      header('Location:'.HOME);
+      return $this->show();
     }
     else { //Luego controlar excepcion
       header('Location:'.HOME);

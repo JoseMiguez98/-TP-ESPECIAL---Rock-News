@@ -12,7 +12,7 @@
         <td>{$genre['id_genero']}</td>
         <td>{$genre['nombre']}</td>
         <td>{$genre['pais_origen']}</td>
-        <td><a href="deleteGenre/{$genre['id_genero']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+        <td><a href="#" class="deleteButton" id="{$genre['id_genero']}" data-target="deleteGenre"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
       </tr>
       {/foreach}
     </tbody>
@@ -21,7 +21,7 @@
 <div class="dataFooter">
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h2 class="text-warning">Agregar:</h2>
-    <form action="addGenre" method="post">
+    <form method="post" class="refreshForm" data-target="addGenre">
       <div class="form-group">
         <label for="name">Nombre</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Hard Rock!">
@@ -36,7 +36,7 @@
 
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h2 class="text-warning">Editar:</h2>
-    <form action="updateGenre" method="post">
+    <form class="refreshForm" method="post" data-target="updateGenre">
       <label for="dropdown-genre">ID Genero:</label>
       <select class="form-control" id="dropdown-genre" name="id_genre">
         {foreach from=$genres item=genre}

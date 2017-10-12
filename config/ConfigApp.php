@@ -6,6 +6,7 @@
       '' => 'indexController#show',
       'home' => 'newsController#show',
       'signUp' => 'signUpController#show',
+      'signIn' => 'signInController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
       'addGenre' => 'genresController#add',

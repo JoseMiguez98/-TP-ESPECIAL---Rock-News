@@ -13,7 +13,7 @@ class albumsModel extends Model
   function addAlbum($name, $year, $artist, $genre){
     $id_genre = $this->getGenreID($genre);
     $sentence = $this->db->prepare("INSERT INTO `album`(`nombre`, `anio`, `artista`, `genero`, `id_genero`) VALUES (?,?,?,?,?)");
-    $sentence->execute([$name, $year, $artist, $genre, $id_genre['id_genero']]);
+    return $sentence->execute([$name, $year, $artist, $genre, $id_genre['id_genero']]);
   }
 
   function deleteAlbum($id_album){
