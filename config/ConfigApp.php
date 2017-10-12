@@ -5,7 +5,8 @@
     public static $ACTIONS = [
       '' => 'indexController#show',
       'home' => 'newsController#show',
-      'signUp' => 'signUpController#show',
+      'signUpForm' => 'signUpController#show',
+      'signUp' => 'signUpController#store',
       'signIn' => 'signInController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
@@ -18,7 +19,7 @@
       'updateAlbum' => 'albumsController#update',
       'filterGenre' => 'filterController#show',
       'verifyUser' => 'loginController#verify',
-      'logout' => 'loginController#destroy'
+      'logout' => 'loginController#destroy',
     ];
   }
 ?>

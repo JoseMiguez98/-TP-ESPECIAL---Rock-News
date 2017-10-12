@@ -46,7 +46,7 @@
             {else}
             <li><a href="#" class="navLink" data-target='signIn'>Iniciar sesión</a></li>
             {/if}
-            <li><a href="#" class="navLink" data-target='signUp'>Registrarse</a></li>
+            <li><a href="#" class="navLink" data-target='signUpForm'>Registrarse</a></li>
           </ul>
         </div>
       </div>
