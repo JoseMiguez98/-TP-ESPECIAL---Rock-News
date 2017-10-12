@@ -24,7 +24,7 @@ class loginController extends Controller
       {
         session_start();
         $_SESSION['usuario'] = $user[0]['nombre_usuario'];
-        // $this->view->showSuccessLogged($user[0]['nombre']);
+        $_SESSION['LAST_ACTIVITY'] = time();
         header('Location:'.HOME);
       }
       else
