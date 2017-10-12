@@ -78,6 +78,15 @@ $(document).ready(function(){
     });
   });
 
+  $('.innerMain').on('submit', '.loginForm', function(event){
+    event.preventDefault();
+    let serializedData = $(this).serialize();
+    console.log(serializedData);
+    $.post('verifyUser', serializedData, function(data) {
+      inyect(data);
+    });
+  });
+
   //AJAX trae la HOME cuando se carga el documento
   $.ajax({
     'url' : 'home',

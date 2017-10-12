@@ -10,6 +10,7 @@ include_once 'controller/signInController.php';
 include_once 'controller/genresController.php';
 include_once 'controller/albumsController.php';
 include_once 'controller/filterController.php';
+include_once 'controller/loginController.php';
 
 
 function parseURL($url){

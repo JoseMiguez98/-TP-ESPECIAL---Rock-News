@@ -15,7 +15,8 @@
       'addAlbum' => 'albumsController#add',
       'deleteAlbum' => 'albumsController#delete',
       'updateAlbum' => 'albumsController#update',
-      'filterGenre' => 'filterController#show'
+      'filterGenre' => 'filterController#show',
+      'verifyUser' => 'loginController#verify'
     ];
   }
 ?>
