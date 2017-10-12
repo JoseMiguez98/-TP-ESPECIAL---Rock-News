@@ -78,6 +78,18 @@ $(document).ready(function(){
     });
   });
 
+    $('.innerMain').on('click','.albumInfo', function(){
+      let album = $(this).data('target');
+      $.ajax({
+        'url' : 'albumInfo/'+album,
+        "contentType" : "application/json; charset=utf-8",
+        "dataType" : "HTML",
+        'success' : function(data){
+          $('.innerInfo').html(data);
+        }
+      });
+  });
+
   // $('.innerMain').on('submit', '.loginForm', function(event){
   //   event.preventDefault();
   //   let serializedData = $(this).serialize();

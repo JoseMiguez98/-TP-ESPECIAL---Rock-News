@@ -19,5 +19,10 @@ class albumsView extends View
     $this->smarty->assign('admin', 'JoseMiguez98');
     $this->smarty->display('templates/sections/albums.tpl');
   }
+
+  function showInfo($info){
+    $this->smarty->assign('info', $info);
+    return $this->smarty->display('templates/sections/albumInfo.tpl');
+  }
 }
  ?>

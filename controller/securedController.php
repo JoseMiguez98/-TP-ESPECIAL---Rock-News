@@ -9,7 +9,7 @@ class securedController extends Controller
     if(isset($_SESSION['usuario'])){
       $this->user = $_SESSION['usuario'];
         //Controlo si expiro el tiempo de la sesión
-        if(time() - $_SESSION['LAST_ACTIVITY'] > 1){
+        if(time() - $_SESSION['LAST_ACTIVITY'] > 1000000000000000000000000000000000000){
           header('Location:'.LOGOUT);
           die();
         }

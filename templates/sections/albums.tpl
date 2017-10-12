@@ -9,6 +9,15 @@
         {/foreach}
       </ul>
     </div>
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Mas info
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          {foreach from=$albums item=album}
+          <li><a href="#" class="albumInfo" data-target="{$album['nombre']}" target="_self">{$album['nombre']}</a></li>
+          {/foreach}
+        </ul>
+      </div>
     <table class="table table-bordered table-condensed">
       <thead>
         <th>#</th>
@@ -37,6 +46,7 @@
         {/foreach}
       </tbody>
     </table>
+    <div class="innerInfo"></div>
   </div>
 
   <div class="dataFooter">
@@ -56,6 +66,10 @@
         <div class="form-group">
           <label for="artist">Artista/Grupo</label>
           <input type="text" class="form-control" name="artist" id="artist" placeholder="John Lennon">
+        </div>
+        <div class="form-group">
+          <label for="info">Descripción</label>
+          <input type="text" class="form-control" name="info" id="info" placeholder="Informacion extra">
         </div>
         <label for="dropdown-genre">Genero:</label>
         <select class="form-control" id="dropdown-genre" name="genre">
@@ -78,15 +92,19 @@
         </select>
         <div class="form-group">
           <label for="name">Nombre</label>
-          <input type="text" class="form-control" name="name" id="name" placeholder="All hope is gone">
+          <input type="text" class="form-control" name="name" id="name" placeholder="All hope is gone" required>
         </div>
         <div class="form-group">
           <label for="year">Año</label>
-          <input type="text" class="form-control" name="year" id="year" placeholder="1989">
+          <input type="text" class="form-control" name="year" id="year" placeholder="1989" required>
         </div>
         <div class="form-group">
           <label for="artist">Artista/Grupo</label>
-          <input type="text" class="form-control" name="artist" id="artist" placeholder="John Lennon">
+          <input type="text" class="form-control" name="artist" id="artist" placeholder="John Lennon" required>
+        </div>
+        <div class="form-group">
+          <label for="info">Descripción</label>
+          <input type="text" class="form-control" name="info" id="info" placeholder="Informacion extra">
         </div>
         <label for="dropdown-genre">Genero:</label>
         <select class="form-control" id="dropdown-genre" name="genre">

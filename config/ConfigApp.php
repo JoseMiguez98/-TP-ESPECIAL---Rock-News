@@ -9,6 +9,7 @@
       'signIn' => 'signInController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
+      'albumInfo' => 'albumsController#info',
       'addGenre' => 'genresController#add',
       'deleteGenre' => 'genresController#delete',
       'updateGenre' => 'genresController#update',
