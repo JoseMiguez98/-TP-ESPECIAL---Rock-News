@@ -37,9 +37,9 @@
             {if isset($user)}
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user}} <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#" class="navLink" data-target='logout'>Cerrar sesión</a></li>
+                  <li><a href="logout" target="_self">Cerrar sesión</a></li>
                 </ul>
               </li>
             </ul>

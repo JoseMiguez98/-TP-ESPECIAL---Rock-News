@@ -9,6 +9,12 @@ class loginController extends Controller
     $this->model = new loginModel();
   }
 
+  function destroy(){
+    session_start();
+    session_destroy();
+    header('Location:'.HOME);
+  }
+
   function verify(){
     $user = $_POST['userName'];
     $password = $_POST['userPassword'];
