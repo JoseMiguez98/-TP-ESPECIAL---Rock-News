@@ -2,17 +2,21 @@
 include_once './view/genresView.php';
 include_once './model/genresModel.php';
 
-class genresController extends Controller
+class genresController extends securedController
 {
   function __construct()
   {
+    parent::__construct();
     $this->model = new genresModel();
     $this->view = new genresView();
   }
 
   function show(){
+    if(isset($this->user)){
+      $userLogged = $this->user;
+    }
     $genres = $this->model->getGenres();
-    $this->view->displayGenres($genres);
+    $this->view->displayGenres($genres, $userLogged);
   }
 
   function add(){

@@ -2,18 +2,22 @@
 include_once './view/albumsView.php';
 include_once './model/albumsModel.php';
 
-class albumsController extends Controller
+class albumsController extends securedController
 {
   function __construct()
   {
+    parent::__construct();
     $this->model = new albumsModel();
     $this->view = new albumsView();
   }
 
   function show(){
+    if(isset($this->user)){
+      $userLogged = $this->user;
+    }
     $albums = $this->model->getAlbums();
     $genres = $this->model->getGenres();
-    $this->view->displayAlbums($albums, $genres);
+    $this->view->displayAlbums($albums, $genres, $userLogged);
   }
 
   function add(){

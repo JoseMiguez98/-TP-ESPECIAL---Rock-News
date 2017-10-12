@@ -34,7 +34,18 @@
             <li><a href="#" class="navLink" data-target='home' target="_blank">Pagina Principal<span class="sr-only">(current)</span></a></li>
             <li><a href="#" class="navLink" data-target='genresTable'>Top Generos</a></li>
             <li><a href="#" class="navLink" data-target='albumsTable'>Top Albums</a></li>
+            {if isset($user)}
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user}} <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#" class="navLink" data-target='logout'>Cerrar sesión</a></li>
+                </ul>
+              </li>
+            </ul>
+            {else}
             <li><a href="#" class="navLink" data-target='signIn'>Iniciar sesión</a></li>
+            {/if}
             <li><a href="#" class="navLink" data-target='signUp'>Registrarse</a></li>
           </ul>
         </div>

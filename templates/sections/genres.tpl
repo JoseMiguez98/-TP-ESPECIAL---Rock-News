@@ -12,13 +12,19 @@
         <td>{$genre['id_genero']}</td>
         <td>{$genre['nombre']}</td>
         <td>{$genre['pais_origen']}</td>
+        {if isset($user)}
+        {if $user == $admin}
         <td><a href="#" class="deleteButton" id="{$genre['id_genero']}" data-target="deleteGenre"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+        {/if}
+        {/if}
       </tr>
       {/foreach}
     </tbody>
   </table>
 </div>
 <div class="dataFooter">
+  {if isset($user)}
+  {if $user == $admin}
   <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
     <h2 class="text-warning">Agregar:</h2>
     <form method="post" class="refreshForm" data-target="addGenre">
@@ -54,4 +60,6 @@
       <button type="submit" class="navLink btn btn-default">Actualizar</button>
     </form>
   </div>
+  {/if}
+  {/if}
 </div>
