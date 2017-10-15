@@ -78,26 +78,39 @@ $(document).ready(function(){
     });
   });
 
-    $('.innerMain').on('click','.albumInfo', function(){
-      let album = $(this).data('target');
-      $.ajax({
-        'url' : 'albumInfo/'+album,
-        "contentType" : "application/json; charset=utf-8",
-        "dataType" : "HTML",
-        'success' : function(data){
-          $('.innerInfo').html(data);
-        }
-      });
+  $('.innerMain').on('click','.albumInfo', function(){
+    let album = $(this).data('target');
+    $.ajax({
+      'url' : 'albumInfo/'+album,
+      "contentType" : "application/json; charset=utf-8",
+      "dataType" : "HTML",
+      'success' : function(data){
+        $('.innerInfo').html(data);
+      }
+    });
   });
 
-  // $('.innerMain').on('submit', '.loginForm', function(event){
-  //   event.preventDefault();
-  //   let serializedData = $(this).serialize();
-  //   console.log(serializedData);
-  //   $.post('verifyUser', serializedData, function(data) {
-  //     inyect(data);
-  //   });
-  // });
+  $('.innerMain').on('submit', '.loginForm', function(event){
+    event.preventDefault();
+    let serializedData = $(this).serialize();
+    // console.log(serializedData);
+    //|===========================|//
+    //LLamado a AJAX Abreviado;
+    $.ajax({
+      'url' : 'verifyUser',
+      'data' : serializedData,
+      'dataType' : 'HTML',
+      'method' : 'POST',
+      'success' : function(data){
+        if(data == 'success_logged'){
+          window.location.href = '';
+        }
+        else{
+          inyect(data);
+        }
+      }
+    });
+  });
 
   //AJAX trae la HOME cuando se carga el documento
   $.ajax({

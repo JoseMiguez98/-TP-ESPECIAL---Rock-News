@@ -11,9 +11,7 @@ class indexController extends securedController
   }
 
   function show(){
-    if(isset($this->user)){
-      $userLogged = $this->user;
-    }
+    $userLogged = $this->user;
     $this->view->displayIndex($userLogged);
   }
 }

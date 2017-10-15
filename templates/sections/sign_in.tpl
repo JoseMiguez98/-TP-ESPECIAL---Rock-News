@@ -3,7 +3,7 @@
     {if isset($error)}
     <div class="alert alert-danger" role="alert">{{$error}}</div>
     {/if}
-    <form action="verifyUser" method='post'>
+    <form class='loginForm' method='post'>
       <div class="form-group">
         <label for="user_name">Nombre de usuario</label>
         <input type="text" class="form-control" name="userName" id="user_name" placeholder="heisenberg">

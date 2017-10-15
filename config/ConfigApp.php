@@ -7,7 +7,7 @@
       'home' => 'newsController#show',
       'signUpForm' => 'signUpController#show',
       'signUp' => 'signUpController#store',
-      'signIn' => 'signInController#show',
+      'loginForm' => 'loginController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
       'albumInfo' => 'albumsController#info',
