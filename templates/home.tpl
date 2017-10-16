@@ -1,7 +1,4 @@
 <div class="dataMain">
-  {if isset($userName)}
-  <div class="alert alert-success" role="alert">Bienvenido {{$userName}}</div>
-  {/if}
   <article class="thumbnail noticiaprincipal">
     <img src="images/skaytandilnew.jpg" alt="skay-bellinson">
     <section class="caption">

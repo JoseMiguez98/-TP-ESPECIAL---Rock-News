@@ -18,6 +18,7 @@ class loginController extends Controller
         session_start();
         $_SESSION['usuario'] = $user[0]['nombre_usuario'];
         $_SESSION['LAST_ACTIVITY'] = time();
+        $_SESSION['admin'] = $user[0]['admin'];
         return 'success_logged';
       }
 

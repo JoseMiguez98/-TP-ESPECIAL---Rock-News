@@ -10,13 +10,10 @@ class albumsView extends View
      parent::__construct();
   }
 
-  function displayAlbums($albums, $genres, $user){
-    if(!empty($user)){
-    $this->smarty->assign('user', $user);
-    }
+  function displayAlbums($albums, $genres, $user_permissions){
+    $this->smarty->assign('user_permissions', $user_permissions);
     $this->smarty->assign('albums', $albums);
     $this->smarty->assign('genres', $genres);
-    $this->smarty->assign('admin', 'JoseMiguez98');
     $this->smarty->display('templates/sections/albums.tpl');
   }
 

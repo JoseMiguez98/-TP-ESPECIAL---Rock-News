@@ -27,7 +27,9 @@
         <td>{$album['artista']}</td>
         <td>{$album['genero']}</td>
         <td>{$album['id_genero']}</td>
+        {if $user_permissions eq 1}
         <td><a href="deleteAlbum/{$album['id_album']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+        {/if}
       </tr>
       {/foreach}
     </tbody>

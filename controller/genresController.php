@@ -12,11 +12,9 @@ class genresController extends securedController
   }
 
   function show(){
-    if(isset($this->user)){
-      $userLogged = $this->user;
-    }
+    $user_permissions = $this->getPermissions();
     $genres = $this->model->getGenres();
-    $this->view->displayGenres($genres, $userLogged);
+    $this->view->displayGenres($genres, $user_permissions);
   }
 
   function add(){
