@@ -12,40 +12,56 @@ class genresController extends securedController
   }
 
   function show(){
-    $user_permissions = $this->getPermissions();
     $genres = $this->model->getGenres();
-    $this->view->displayGenres($genres, $user_permissions);
+    $this->view->displayGenres($genres, $this->user_permissions);
   }
 
   function add(){
-    if(isset($_POST['name']) && !empty($_POST['name'])){
-      $name = $_POST['name'];
-      $country = isset($_POST['country']) ? $_POST['country'] : 'Desconocido';
-      $this->model->addGenre($name, $country);
-      return $this->show();
+    if($this->user_permissions == 1){
+      if(isset($_POST['name']) && !empty($_POST['name'])){
+        $name = $_POST['name'];
+        $country = isset($_POST['country']) ? $_POST['country'] : 'Desconocido';
+        $this->model->addGenre($name, $country);
+        return $this->show();
+      }
+      else { //Luego controlar excepcion
+        header('Location:'.HOME);
+      }
     }
-    else { //Luego controlar excepcion
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
       header('Location:'.HOME);
     }
   }
 
   function delete($id_genre){
-    $this->model->deleteGenre($id_genre[0]);
-    return $this->show();
+    if($this->user_permissions == 1){
+      $this->model->deleteGenre($id_genre[0]);
+      return $this->show();
+    }
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
+      header('Location:'.HOME);
+    }
   }
 
   function update(){
-    if(isset($_POST['name']) && !empty($_POST['name'])){
-      $name = $_POST['name'];
-      $id_genre = $_POST['id_genre'];
-      $country = isset($_POST['country']) ? $_POST['country'] : null;
-      $this->model->updateGenre($name, $country, $id_genre);
-      return $this->show();
+    if($this->user_permissions == 1){
+      if(isset($_POST['name']) && !empty($_POST['name'])){
+        $name = $_POST['name'];
+        $id_genre = $_POST['id_genre'];
+        $country = isset($_POST['country']) ? $_POST['country'] : null;
+        $this->model->updateGenre($name, $country, $id_genre);
+        return $this->show();
+      }
+      else { //Luego controlar excepcion
+        header('Location:'.HOME);
+      }
     }
-    else { //Luego controlar excepcion
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
       header('Location:'.HOME);
     }
-
   }
 }
 ?>

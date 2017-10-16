@@ -12,13 +12,13 @@ class albumsController extends securedController
   }
 
   function show(){
-      $user_permissions = $this->getPermissions();      
-      $albums = $this->model->getAlbums();
-      $genres = $this->model->getGenres();
-      $this->view->displayAlbums($albums, $genres, $user_permissions);
-    }
+    $albums = $this->model->getAlbums();
+    $genres = $this->model->getGenres();
+    $this->view->displayAlbums($albums, $genres, $this->user_permissions);
+  }
 
-    function add(){
+  function add(){
+    if($this->user_permissions == 1){
       if(isset($_POST['name']) && !empty($_POST['name'])){
         $name = $_POST['name'];
         $info = isset($_POST['info']) ? $_POST['info'] : null;
@@ -32,13 +32,25 @@ class albumsController extends securedController
         header('Location:'.HOME);
       }
     }
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
+      header('Location:'.HOME);
+    }
+  }
 
-    function delete($id_album){
+  function delete($id_album){
+    if($this->user_permissions == 1){
       $this->model->deleteAlbum($id_album[0]);
       return $this->show();
     }
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
+      header('Location:'.HOME);
+    }
+  }
 
-    function update(){
+  function update(){
+    if($this->user_permissions == 1){
       if(isset($_POST['name']) && !empty($_POST['name'])){
         $name = $_POST['name'];
         $genre = $_POST['genre'];
@@ -53,10 +65,15 @@ class albumsController extends securedController
         header('Location:'.HOME);
       }
     }
-
-    function info($album){
-      $info = $this->model->getInfo($album);
-      return $this->view->showInfo($info['descripcion']);
+    //Si no es admin el que envia el request se lo redirecciona al HOME
+    else{
+      header('Location:'.HOME);
     }
   }
-  ?>
+
+  function info($album){
+    $info = $this->model->getInfo($album);
+    return $this->view->showInfo($info['descripcion']);
+  }
+}
+?>
