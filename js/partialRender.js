@@ -54,16 +54,23 @@ $(document).ready(function(){
   });
 
   //Inserto/Actualizo datos en las tablas mediante AJAX
-  $('.innerFooter').on('submit', '.refreshForm', function(event){
+  $('.innerFooter').on('submit', '.refreshForm',  function(event){
     event.preventDefault();
     let serializedData = $(this).serialize();
-    // console.log(serializedData);
+    console.log(serializedData);
     let action = $(this).data('target');
+    console.log(serializedData);
     $.post(action, serializedData, function(data) {
       let table = $(data).find()['prevObject'][0];
       console.log(table);
       $('.innerMain').html(table);
     });
+  });
+
+  //Disparo el submit de los formularios/ Alta y Modificación
+  $('.innerFooter').on('click', '.btn-submitForm', function(event){
+    let formToSubmit = $(this).data('target');
+    $('#'+formToSubmit).submit();
   });
 
   $('.innerMain').on('click','.genreFilter', function(){
@@ -111,6 +118,7 @@ $(document).ready(function(){
       }
     });
   });
+
 
   //AJAX trae la HOME cuando se carga el documento
   $.ajax({
