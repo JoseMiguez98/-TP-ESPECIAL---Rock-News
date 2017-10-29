@@ -15,6 +15,7 @@
       'deleteGenre' => 'genresController#delete',
       'updateGenre' => 'genresController#update',
       'addAlbum' => 'albumsController#add',
+      'showModal' => 'modalController#show',
       'deleteAlbum' => 'albumsController#delete',
       'updateAlbum' => 'albumsController#update',
       'filterGenre' => 'filterController#show',

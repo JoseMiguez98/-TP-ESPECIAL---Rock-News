@@ -4,6 +4,12 @@
 */
 class albumsModel extends Model
 {
+  function getAlbum($id){
+    $sentence = $this->db->prepare('select * from album where id_album=?');
+    $sentence->execute([$id[0]]);
+    return $sentence->fetch(PDO::FETCH_ASSOC);
+  }
+
   function getAlbums(){
     $sentence = $this->db->prepare('select * from album');
     $sentence->execute();

@@ -13,8 +13,7 @@ class albumsController extends securedController
 
   function show(){
     $albums = $this->model->getAlbums();
-    $genres = $this->model->getGenres();
-    $this->view->displayAlbums($albums, $genres, $this->user_permissions);
+    $this->view->displayAlbums($albums, $this->user_permissions);
   }
 
   function add(){

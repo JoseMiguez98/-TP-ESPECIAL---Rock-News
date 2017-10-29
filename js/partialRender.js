@@ -59,7 +59,6 @@ $(document).ready(function(){
     let serializedData = $(this).serialize();
     console.log(serializedData);
     let action = $(this).data('target');
-    console.log(serializedData);
     $.post(action, serializedData, function(data) {
       let table = $(data).find()['prevObject'][0];
       console.log(table);
@@ -117,6 +116,21 @@ $(document).ready(function(){
         }
       }
     });
+  });
+
+  //Mostrar modals de alta y baja usando AJAX
+  $('.innerMain').on('click', '.toggle-modal-btn',  function(){
+    event.preventDefault();
+    let id_element = $(this).attr('id');
+    let element = $(this).data('target');
+    $.ajax({
+      'url' : 'showModal'+'/'+element+'/'+id_element,
+      'contentType' : 'application/json; charset=utf-8',
+      'success' : function(data, action){
+        $('.innerModal').html(data);
+        $('.modal').modal('toggle');
+      }
+    })
   });
 
 

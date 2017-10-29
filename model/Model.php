@@ -35,5 +35,11 @@ class Model
     $sentence->execute();
     return $sentence->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  function getGenre($id){
+    $sentence = $this->db->prepare('select * from genero where id_genero=?');
+    $sentence->execute([$id]);
+    return $sentence->fetch(PDO::FETCH_ASSOC);
+  }
 }
 ?>

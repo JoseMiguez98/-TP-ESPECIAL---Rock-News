@@ -11,6 +11,7 @@ include_once 'controller/genresController.php';
 include_once 'controller/albumsController.php';
 include_once 'controller/filterController.php';
 include_once 'controller/loginController.php';
+include_once 'controller/modalController.php';
 
 
 function parseURL($url){
