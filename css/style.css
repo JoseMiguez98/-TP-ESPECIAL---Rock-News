@@ -43,6 +43,10 @@
   border-style: solid;
 }
 
+.albumInfo, .albumInfo:hover{
+  color: inherit;
+}
+
 p, li, label, tr{
   color: rgb(9, 193, 91);
 }

@@ -16,9 +16,9 @@ class albumsView extends View
     $this->smarty->display('templates/sections/albums.tpl');
   }
 
-  function showInfo($info){
-    $this->smarty->assign('info', $info);
-    return $this->smarty->display('templates/sections/albumInfo.tpl');
+  function showInfo($album){
+    $this->smarty->assign('album', $album);
+    return $this->smarty->display('templates/sections/infoModal.tpl');
   }
 }
  ?>

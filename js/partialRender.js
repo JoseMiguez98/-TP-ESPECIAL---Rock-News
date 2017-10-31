@@ -93,13 +93,15 @@ $(document).ready(function(){
 
   //Traigo la info extra de cada album con AJAX
   $('.innerMain').on('click','.albumInfo', function(){
-    let album = $(this).data('target');
+    event.preventDefault();
+    let id = $(this).attr('id');
     $.ajax({
-      'url' : 'albumInfo/'+album,
+      'url' : 'albumInfo/'+id,
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
         $('.innerInfo').html(data);
+        $('#infoModal').modal('toggle');
       }
     });
   });

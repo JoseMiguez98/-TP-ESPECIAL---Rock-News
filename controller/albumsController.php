@@ -69,9 +69,9 @@ class albumsController extends securedController
     }
   }
 
-  function info($album){
-    $info = $this->model->getInfo($album);
-    return $this->view->showInfo($info['descripcion']);
+  function info($id){
+    $album = $this->model->getAlbum($id);
+    return $this->view->showInfo($album);
   }
 }
 ?>

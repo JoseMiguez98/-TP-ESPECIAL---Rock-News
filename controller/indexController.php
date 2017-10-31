@@ -11,7 +11,6 @@ class indexController extends securedController
   }
 
   function show(){
-    var_dump($this->user_permissions);
     $userLogged = $this->user;
     $this->view->displayIndex($userLogged, $this->user_permissions);
   }
