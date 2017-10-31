@@ -34,6 +34,9 @@
             <li><a href="#" class="navLink" data-target='genresTable'>Top Generos</a></li>
             <li><a href="#" class="navLink" data-target='albumsTable'>Top Albums</a></li>
             {if isset($user)}
+            {if $user_permissions eq 1}
+            <li><a href="#" class="navLink" data-target='permissionsTable'>Permisos</a></li>
+            {/if}
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user}} <span class="caret"></span></a>

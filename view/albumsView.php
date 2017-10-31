@@ -11,7 +11,7 @@ class albumsView extends View
   }
 
   function displayAlbums($albums, $user_permissions){
-    $this->smarty->assign('user_permissions', $user_permissions);
+      $this->smarty->assign('user_permissions', $user_permissions);
     $this->smarty->assign('albums', $albums);
     $this->smarty->display('templates/sections/albums.tpl');
   }

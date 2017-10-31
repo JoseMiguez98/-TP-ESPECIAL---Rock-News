@@ -12,6 +12,7 @@ include_once 'controller/albumsController.php';
 include_once 'controller/filterController.php';
 include_once 'controller/loginController.php';
 include_once 'controller/modalController.php';
+include_once 'controller/permissionsController.php';
 
 
 function parseURL($url){

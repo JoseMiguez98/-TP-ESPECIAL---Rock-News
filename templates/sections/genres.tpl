@@ -16,7 +16,7 @@
         <td>{$genre['nombre']}</td>
         <td>{$genre['pais_origen']}</td>
         {if $user_permissions eq 1}
-        <td><a href="#" class="deleteButton" id="{$genre['id_genero']}" data-target="deleteGenre"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+        <td><a href="#" class="modifyButton" id="{$genre['id_genero']}" data-target="deleteGenre"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
         <td><a class="toggle-modal-btn" data-toggle="modal" data-target="Genre" href="" id="{$genre['id_genero']}" data-target="updateAlbum"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
         {/if}
       </tr>

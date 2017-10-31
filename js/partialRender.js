@@ -13,6 +13,7 @@ $(document).ready(function(){
     return $(_data).find()['prevObject'][dataReturn];
   }
 
+  //Fracciono la data traida con AJAX y la inyecto
   function inyect(data,textStatus, jqXHR){
     let dataMain = parseData(data, '.dataMain');
     let dataFooter = parseData(data, '.dataFooter');
@@ -36,8 +37,8 @@ $(document).ready(function(){
     });
   });
 
-  //Borrar elemento de las tablas con partial render
-  $(".innerMain").on('click','.deleteButton', function(){
+  //Borrar elemento/Cambiar permisos usuario de las tablas con partial render
+  $(".innerMain").on('click','.modifyButton', function(){
     event.preventDefault();
     let id = $(this).attr('id');
     let action = $(this).data('target');
@@ -47,8 +48,13 @@ $(document).ready(function(){
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
-        let table = $(data).find()['prevObject'][0];
-        $('.innerMain').html(table);
+        if (data == 'same_user'){
+          window.location.href = '';
+        }
+        else{
+          let table = $(data).find()['prevObject'][0];
+          $('.innerMain').html(table);
+        }
       }
     });
   });
@@ -72,6 +78,7 @@ $(document).ready(function(){
     $('#'+formToSubmit).submit();
   });
 
+  //Filtrado de albums traidos con AJAX
   $('.innerMain').on('click','.genreFilter', function(){
     let filter = $(this).data('target');
     $.ajax({
@@ -84,6 +91,7 @@ $(document).ready(function(){
     });
   });
 
+  //Traigo la info extra de cada album con AJAX
   $('.innerMain').on('click','.albumInfo', function(){
     let album = $(this).data('target');
     $.ajax({
@@ -96,6 +104,7 @@ $(document).ready(function(){
     });
   });
 
+  //Login de usuario con AJAX
   $('.innerMain').on('submit', '.loginForm', function(event){
     event.preventDefault();
     let serializedData = $(this).serialize();

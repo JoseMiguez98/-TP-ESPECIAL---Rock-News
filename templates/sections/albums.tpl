@@ -52,7 +52,7 @@
             <td>{$album['genero']}</td>
             <td>{$album['id_genero']}</td>
             {if $user_permissions eq 1}
-            <td><a class="deleteButton" href="" data-target="deleteAlbum" id="{$album['id_album']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+            <td><a class="modifyButton" href="" data-target="deleteAlbum" id="{$album['id_album']}"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
             <td><a class="toggle-modal-btn" href="" data-target="Album" id="{$album['id_album']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
             {/if}
           </tr>

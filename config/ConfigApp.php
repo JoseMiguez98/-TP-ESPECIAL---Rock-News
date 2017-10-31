@@ -21,6 +21,8 @@
       'filterGenre' => 'filterController#show',
       'verifyUser' => 'loginController#verify',
       'logout' => 'loginController#destroy',
+      'permissionsTable' => 'permissionsController#show',
+      'changePermissions' => 'permissionsController#change'
     ];
   }
 ?>

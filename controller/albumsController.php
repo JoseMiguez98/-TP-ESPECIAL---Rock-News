@@ -4,8 +4,7 @@ include_once './model/albumsModel.php';
 
 class albumsController extends securedController
 {
-  function __construct()
-  {
+  function __construct(){
     parent::__construct();
     $this->model = new albumsModel();
     $this->view = new albumsView();
