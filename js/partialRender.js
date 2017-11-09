@@ -81,6 +81,7 @@ $(document).ready(function(){
   //Filtrado de albums traidos con AJAX
   $('.innerMain').on('click','.genreFilter', function(){
     let filter = $(this).data('target');
+    console.log(filter);
     $.ajax({
       'url' : 'filterGenre/'+filter,
       "contentType" : "application/json; charset=utf-8",
@@ -135,6 +136,7 @@ $(document).ready(function(){
   $('.innerMain').on('click', '.toggle-modal-btn',  function(){
     event.preventDefault();
     let id_element = $(this).attr('id');
+    console.log(id_element);
     let element = $(this).data('target');
     console.log(element);
     $.ajax({
