@@ -1,8 +1,10 @@
+<div class="dataMain">
 <h1 class="text-warning">Top Albums de Rock:</h1>
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar por Genero
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
+      <li><a href="#" class="genreFilter" data-target="all" target="_self">Todos</a></li>
       {foreach from=$genres item=genre}
       <li><a href="#" class="genreFilter" data-target="{$genre['nombre']}" target="_self">{$genre['nombre']}</a></li>
       {/foreach}
@@ -34,3 +36,5 @@
       {/foreach}
     </tbody>
   </table>
+</div>
+<div class="dataFooter"></div>

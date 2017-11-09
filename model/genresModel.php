@@ -18,5 +18,17 @@ class genresModel extends Model
     $sentence = $this->db->prepare("UPDATE `genero` SET `nombre` = ?, `pais_origen` = ? WHERE `genero`.`id_genero` = $id_genre");
     return $sentence->execute([$name, $country]);
   }
+
+  function getGenres(){
+    $sentence = $this->db->prepare('select * from genero');
+    $sentence->execute();
+    return $sentence->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  function getGenre($id){
+    $sentence = $this->db->prepare('select * from genero where id_genero=?');
+    $sentence->execute([$id]);
+    return $sentence->fetch(PDO::FETCH_ASSOC);
+  }
 }
 ?>

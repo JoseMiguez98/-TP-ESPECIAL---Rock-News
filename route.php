@@ -14,7 +14,6 @@ include_once 'controller/loginController.php';
 include_once 'controller/modalController.php';
 include_once 'controller/permissionsController.php';
 
-
 function parseURL($url){
   //Explodeo la url para convertirla en un array
   $urlExploded = explode('/' ,$_GET['action']);
@@ -42,6 +41,6 @@ if(isset($_GET['action'])){
     else{
       echo $controller->$method();
     }
-  }
+  } 
 }
 ?>

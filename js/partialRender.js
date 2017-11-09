@@ -86,7 +86,8 @@ $(document).ready(function(){
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
-        $('.innerMain').html(data);
+        console.log(data);
+        inyect(data);
       }
     });
   });
@@ -100,8 +101,8 @@ $(document).ready(function(){
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
-        $('.innerInfo').html(data);
-        $('#infoModal').modal('toggle');
+        $('.innerModal').html(data);
+        $('modal').modal('toggle');
       }
     });
   });

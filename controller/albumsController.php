@@ -1,18 +1,23 @@
 <?php
 include_once './view/albumsView.php';
 include_once './model/albumsModel.php';
+include_once './model/genresModel.php';
 
 class albumsController extends securedController
 {
+  protected $genres_model;
+
   function __construct(){
     parent::__construct();
     $this->model = new albumsModel();
     $this->view = new albumsView();
+    $this->genres_model = new genresModel();
   }
 
   function show(){
     $albums = $this->model->getAlbums();
-    $this->view->displayAlbums($albums, $this->user_permissions);
+    $genres = $this->genres_model->getGenres();
+    $this->view->displayAlbums($albums, $this->user_permissions, $genres);
   }
 
   function add(){

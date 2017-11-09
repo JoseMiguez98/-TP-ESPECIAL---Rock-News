@@ -17,8 +17,10 @@ class permissionsController extends securedController
 
   function change($id){
     $id_user = $id[0];
-    $this->model->changePermissions($id_user);
+    $nPermiso = $this->model->changePermissions($id_user);
     if($id_user == $_SESSION['id']){
+      //session_destroy();
+      $_SESSION['permissions'] = !$_SESSION['permissions'];
       return 'same_user';
     }
     return $this->show();
