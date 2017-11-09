@@ -24,10 +24,12 @@ class filterController extends securedController
     $genres = $this->genres_model->getGenres();
     if($filter[0] == 'all'){
       $albums = $this->album_model->getAlbums();
-      return $this->album_view->displayAlbums($albums, $user_permissions, $genres);
+      $albums_with_genres = $this->genres_model->getCurrentGenres($albums);
+      return $this->album_view->displayAlbums($albums_with_genres, $user_permissions, $genres);
     }
     $filteredAlbums = $this->model->getFilteredAlbums($filter);
-    return $this->view->displayFilteredAlbums($filteredAlbums, $genres, $user_permissions);
+    $albums_with_genres = $this->genres_model->getCurrentGenres($filteredAlbums);
+    return $this->view->displayFilteredAlbums($albums_with_genres, $genres, $user_permissions);
   }
 }
 ?>

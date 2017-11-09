@@ -33,7 +33,7 @@ class albumsController extends securedController
         return $this->show();
       }
       else{ //luego controlar excepcion
-        header('Location:'.HOME);
+        return $this->show();
       }
     }
     //Si no es admin el que envia el request se lo redirecciona al HOME
@@ -76,7 +76,7 @@ class albumsController extends securedController
   }
 
   function info($id){
-    $album = $this->model->getAlbum($id);
+    $album = $this->model->getAlbum($id[0]);
     return $this->view->showInfo($album);
   }
 }

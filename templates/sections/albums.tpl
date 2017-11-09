@@ -1,11 +1,11 @@
 <div class="dataMain">
   <h1 class="text-warning">Top Albums de Rock:</h1>
   <ul class="list-inline">
+    {if $user_permissions eq 1}
     <li>
-      {if $user_permissions eq 1}
       <button type="button" class="btn btn-success toggle-modal-btn" data-target="Album">Agregar</button>
-      {/if}
     </li>
+    {/if}
     <li>
       <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Filtrar por Genero
@@ -13,7 +13,7 @@
           <ul class="dropdown-menu">
             <li><a href="#" class="genreFilter" data-target="all" target="_self">Todos</a></li>
             {foreach from=$genres item=genre}
-            <li><a href="#" class="genreFilter" data-target="{$genre['nombre']}" target="_self">{$genre['nombre']}</a></li>
+            <li><a href="#" class="genreFilter" data-target="{$genre['id_genero']}" target="_self">{$genre['nombre']}</a></li>
             {/foreach}
           </ul>
         </div>
@@ -46,7 +46,7 @@
           <td><a class="toggle-modal-btn" href="" data-target="Album" id="{$album['id_album']}"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
           {/if}
         </tr>
-        {/foreach}
+        o{/foreach}
       </tbody>
     </table>
 

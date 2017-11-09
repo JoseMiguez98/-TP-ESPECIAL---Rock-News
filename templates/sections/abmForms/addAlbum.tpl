@@ -31,7 +31,7 @@
           <label for="dropdown-genre">Genero:</label>
           <select class="form-control" id="dropdown-genre" name="genre">
             {foreach from=$genres item=genre}
-            <option>{$genre['nombre']}</option>
+            <option value="{$genre['nombre']}">{$genre['nombre']}</option>
             {/foreach}
           </select>
 

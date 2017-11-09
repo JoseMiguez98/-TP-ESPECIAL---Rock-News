@@ -96,13 +96,14 @@ $(document).ready(function(){
   $('.innerMain').on('click','.albumInfo', function(){
     event.preventDefault();
     let id = $(this).attr('id');
+    // console.log(id);
     $.ajax({
       'url' : 'albumInfo/'+id,
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
         $('.innerModal').html(data);
-        $('modal').modal('toggle');
+        $('#infoModal').modal('toggle');
       }
     });
   });
@@ -135,6 +136,7 @@ $(document).ready(function(){
     event.preventDefault();
     let id_element = $(this).attr('id');
     let element = $(this).data('target');
+    console.log(element);
     $.ajax({
       'url' : 'showModal'+'/'+element+'/'+id_element,
       'contentType' : 'application/json; charset=utf-8',
