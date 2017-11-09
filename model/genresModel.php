@@ -30,5 +30,19 @@ class genresModel extends Model
     $sentence->execute([$id]);
     return $sentence->fetch(PDO::FETCH_ASSOC);
   }
+
+  function getCurrentGenres($albums){
+    $albums_with_genres=[];
+    //Para cada album le pido su correspondiente genero en base al id_genero
+    foreach ($albums as $album) {
+      $sentence = $this->db->prepare('select nombre from genero where id_genero=?');
+      $sentence->execute([$album['id_genero']]);
+      //Inserto el nombre del genero en el album
+      $album['genero'] = $sentence->fetch(PDO::FETCH_ASSOC)['nombre'];
+      //Paso el album a un nuevo array
+      array_push($albums_with_genres, $album);
+    }
+    return $albums_with_genres;
+  }
 }
 ?>
