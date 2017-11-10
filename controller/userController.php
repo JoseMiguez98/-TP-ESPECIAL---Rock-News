@@ -13,18 +13,17 @@ class userController extends securedController
   }
 
   function create(){
-    if(!empty($_POST['name']) && !empty($_POST['last_name']) && !empty($_POST['user_name']) && !empty($_POST['user_password'])){
-      $name = $_POST['name'];
-      $last_name = $_POST['last_name'];
-      $user_name = $_POST['user_name'];
-      $user_password = $_POST['user_password'];
-      $this->model->createUser($name, $last_name, $user_name, $user_password);
-      header('Location:'.HOME);
+    if(!empty($_POST['userName']) && !empty($_POST['userPassword'])){
+      $user_name = $_POST['userName'];
+      $user_password = $_POST['userPassword'];
+      $this->model->createUser($user_name, $user_password);
+      return 'success_registered';
     }
   }
 
   function delete($id_user){
     $this->model->deleteUser($id_user[0]);
+    //Si el usuario borra su propia cuenta, se destruye la session y se le comunica a AJAX
     if($id_user[0] == $_SESSION['id']){
       session_destroy();
       return 'same_user';

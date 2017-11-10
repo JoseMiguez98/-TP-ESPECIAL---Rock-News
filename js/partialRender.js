@@ -112,20 +112,32 @@ $(document).ready(function(){
   });
 
   //Login de usuario con AJAX
-  $('.innerMain').on('submit', '.loginForm', function(event){
+  $('.innerMain').on('submit', '.sessionForm', function(event){
     event.preventDefault();
     let serializedData = $(this).serialize();
+    console.log(serializedData);
+    let action = $(this).data('target');
+    console.log(action);
     // console.log(serializedData);
     //|===========================|//
     //LLamado a AJAX Abreviado;
     $.ajax({
-      'url' : 'verifyUser',
+      'url' : action,
       'data' : serializedData,
       'dataType' : 'HTML',
       'method' : 'POST',
       'success' : function(data){
+        //En caso de recibir respuesta AJAX evalua si se loggeo o se creo un usuario.
         if(data == 'success_logged'){
           window.location.href = '';
+        }
+        else if(data == 'success_registered'){
+          //===//
+          //Si un nuevo user fue creado AJAX lo loggea automaticamente
+          $.post('verifyUser', serializedData, function() {
+            window.location.href = '';
+          });
+          //===//
         }
         else{
           inyect(data);
