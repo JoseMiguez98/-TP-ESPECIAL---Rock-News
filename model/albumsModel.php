@@ -23,7 +23,7 @@ class albumsModel extends Model
   }
 
   function deleteAlbum($id_album){
-    $sentence = $this->db->prepare("delete from album where id_album=?");
+    $sentence = $this->db->prepare("DELETE FROM album WHERE id_album=?");
     return $sentence->execute([$id_album]);
   }
 

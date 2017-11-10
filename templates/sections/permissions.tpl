@@ -14,6 +14,7 @@
         <td>Usuario común</td>
         {/if}
         <td><a href="#" class="modifyButton" id="{$user['id_usuario']}" data-target="changePermissions"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+        <td><a href="#" class="modifyButton" id="{$user['id_usuario']}" data-target="deleteUser"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
         </tr>
         {/foreach}
       </tbody>

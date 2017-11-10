@@ -1,6 +1,6 @@
 <div class="dataMain">
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-    <form action="signUp" method='post'>
+    <form action="createUser" method='post'>
       <div class="form-group">
         <label for="name">Nombre</label>
         <input type="text" class="form-control" name="name" id="name" placeholder="Jose" required>

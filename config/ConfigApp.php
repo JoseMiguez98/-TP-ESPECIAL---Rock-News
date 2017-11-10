@@ -6,7 +6,7 @@
       '' => 'indexController#show',
       'home' => 'newsController#show',
       'signUpForm' => 'signUpController#show',
-      'signUp' => 'signUpController#store',
+      'createUser' => 'userController#create',
       'loginForm' => 'loginController#show',
       'genresTable' => 'genresController#show',
       'albumsTable' => 'albumsController#show',
@@ -22,7 +22,8 @@
       'verifyUser' => 'loginController#verify',
       'logout' => 'loginController#destroy',
       'permissionsTable' => 'permissionsController#show',
-      'changePermissions' => 'permissionsController#change'
+      'changePermissions' => 'permissionsController#change',
+      'deleteUser' => 'userController#delete'
     ];
   }
 ?>

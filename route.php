@@ -1,18 +1,19 @@
 <?php
-include_once 'config/ConfigApp.php';
-include_once 'controller/Controller.php';
-include_once 'controller/securedController.php';
-include_once 'view/View.php';
-include_once 'model/Model.php';
-include_once 'controller/newsController.php';
-include_once 'controller/indexController.php';
-include_once 'controller/signUpController.php';
-include_once 'controller/genresController.php';
-include_once 'controller/albumsController.php';
-include_once 'controller/filterController.php';
-include_once 'controller/loginController.php';
-include_once 'controller/modalController.php';
-include_once 'controller/permissionsController.php';
+require_once 'config/ConfigApp.php';
+require_once 'controller/Controller.php';
+require_once 'controller/securedController.php';
+require_once 'view/View.php';
+require_once 'model/Model.php';
+require_once 'controller/newsController.php';
+require_once 'controller/indexController.php';
+require_once 'controller/signUpController.php';
+require_once 'controller/genresController.php';
+require_once 'controller/albumsController.php';
+require_once 'controller/filterController.php';
+require_once 'controller/loginController.php';
+require_once 'controller/modalController.php';
+require_once 'controller/permissionsController.php';
+require_once 'controller/userController.php';
 
 function parseURL($url){
   //Explodeo la url para convertirla en un array
@@ -41,6 +42,6 @@ if(isset($_GET['action'])){
     else{
       echo $controller->$method();
     }
-  } 
+  }
 }
 ?>

@@ -1,17 +1,21 @@
 <?php
-include_once './view/permissionsView.php';
-include_once './model/permissionsModel.php';
+require_once './view/permissionsView.php';
+require_once './model/permissionsModel.php';
+require_once './model/userModel.php';
 
 class permissionsController extends securedController
 {
+  protected $user_model;
+
   function __construct(){
     parent::__construct();
     $this->model = new permissionsModel();
+    $this->user_model = new userModel();
     $this->view = new permissionsView();
   }
 
   function show(){
-    $users = $this->model->getUsers();
+    $users = $this->user_model->getUsers();
     $this->view->displayUsers($users);
   }
 

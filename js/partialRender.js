@@ -52,6 +52,8 @@ $(document).ready(function(){
           window.location.href = '';
         }
         else{
+          console.log("Entro");
+          console.log(data);
           let table = $(data).find()['prevObject'][0];
           $('.innerMain').html(table);
         }
