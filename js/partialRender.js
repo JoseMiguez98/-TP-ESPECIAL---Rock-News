@@ -120,7 +120,6 @@ $(document).ready(function(){
     console.log(action);
     // console.log(serializedData);
     //|===========================|//
-    //LLamado a AJAX Abreviado;
     $.ajax({
       'url' : action,
       'data' : serializedData,

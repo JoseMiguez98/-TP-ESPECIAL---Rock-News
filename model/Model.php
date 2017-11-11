@@ -1,5 +1,5 @@
 <?php
-include_once './database/db-config.php';
+require_once '../database/db-config.php';
 //Clase encargada de controlar todo lo que es logica y procesamiento de datos
 class Model
 {
