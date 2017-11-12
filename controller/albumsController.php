@@ -69,6 +69,7 @@ class albumsController extends securedController
         $year = isset($_POST['year']) ? $_POST['year'] : 0000;
         $artist = isset($_POST['artist']) ? $_POST['artist'] : 'Desconocido';
         $this->model->updateAlbum($name, $year, $artist, $genre, $id_album, $info);
+        $this->addImages($id_album);
         return $this->show();
       }
       else { //Luego controlar excepcion
@@ -91,7 +92,6 @@ class albumsController extends securedController
   }
 
   private function addImages($id_album){
-    $this->imagesModel->resizeImage(100, 100);
     //Si alguna de las imagenes no es .jpg no agrego ninguna
     foreach ($_FILES['images']['type'] as $type) {
       if($type != 'image/jpeg'){
