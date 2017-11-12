@@ -1,5 +1,5 @@
 <!-- Modal-Update -->
-<div class="modal fade" id="updateModal" role="dialog" >
+<div class="modal fade" id="abmModal" role="dialog" >
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -27,6 +27,10 @@
           <div class="form-group">
             <label for="info">Descripción</label>
             <input type="text" class="form-control" name="info" id="info" placeholder="Información extra" value="{$element['descripcion']}">
+          </div>
+          <div class="form-group">
+            <label for="images">Imagenes</label>
+            <input type="file" name="images[]" id="images" accept="image/jpeg" multiple>
           </div>
           <label for="dropdown-genre">Genero:</label>
           <select class="form-control" id="dropdown-genre" name="genre">

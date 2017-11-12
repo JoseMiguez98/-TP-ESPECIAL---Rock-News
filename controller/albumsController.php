@@ -1,17 +1,20 @@
 <?php
-include_once './view/albumsView.php';
-include_once './model/albumsModel.php';
-include_once './model/genresModel.php';
+require_once './view/albumsView.php';
+require_once './model/albumsModel.php';
+require_once './model/genresModel.php';
+require_once './model/imagesModel.php';
 
 class albumsController extends securedController
 {
-  protected $genres_model;
+  private $genres_model;
+  private $imagesModel;
 
   function __construct(){
     parent::__construct();
     $this->model = new albumsModel();
     $this->view = new albumsView();
     $this->genres_model = new genresModel();
+    $this->imagesModel = new imagesModel();
   }
 
   function show(){
@@ -29,7 +32,10 @@ class albumsController extends securedController
         $year = isset($_POST['year']) ? $_POST['year'] : '0';
         $artist = isset($_POST['artist']) ? $_POST['artist'] : 'Desconocido';
         $genre = $_POST['genre'];
-        $this->model->addAlbum($name, $year, $artist, $genre, $info);
+        //Inserto el album y almaceno su ID
+        $id_album = $this->model->addAlbum($name, $year, $artist, $genre, $info);
+        //Luego de agregar el album en la BBDD agrego las imagenes
+        $this->addImages($id_album);
         return $this->show();
       }
       else{ //luego controlar excepcion
@@ -75,9 +81,28 @@ class albumsController extends securedController
     }
   }
 
-  function info($id){
-    $album = $this->model->getAlbum($id[0]);
+  function info($id_album){
+    $album = $this->model->getAlbum($id_album[0]);
+    $images = $this->model->getImages($id_album[0]);
+    if($images){
+      $album['imagenes'] = $images;
+    }
     return $this->view->showInfo($album);
+  }
+
+  private function addImages($id_album){
+    $this->imagesModel->resizeImage(100, 100);
+    //Si alguna de las imagenes no es .jpg no agrego ninguna
+    foreach ($_FILES['images']['type'] as $type) {
+      if($type != 'image/jpeg'){
+        return false;
+      }
+    }
+    //Almaceno cada una de las imagenes en la BBDD
+    foreach ($_FILES['images']['tmp_name'] as $tempDir) {
+      $this->imagesModel->saveImage($id_album, $tempDir);
+    }
+    return true;
   }
 }
 ?>

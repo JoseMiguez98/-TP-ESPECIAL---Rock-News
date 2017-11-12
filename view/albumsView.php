@@ -19,6 +19,7 @@ class albumsView extends View
 
   function showInfo($album){
     $this->smarty->assign('album', $album);
+    $this->smarty->assign('first', true);
     return $this->smarty->display('templates/sections/infoModal.tpl');
   }
 }

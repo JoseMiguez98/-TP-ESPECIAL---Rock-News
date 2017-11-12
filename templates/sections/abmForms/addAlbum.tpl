@@ -1,6 +1,6 @@
 
 <!-- Modal-Create -->
-<div class="modal fade" id="createModal" role="dialog" >
+<div class="modal fade" id="abmModal" role="dialog" >
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
 
-        <form method="post" id="createForm" class="refreshForm" data-target='addAlbum'>
+        <form method="post" id="createForm" class="refreshForm" data-target='addAlbum' enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" class="form-control" name="name" id="name" placeholder="All hope is gone">
@@ -26,7 +26,11 @@
           </div>
           <div class="form-group">
             <label for="info">Descripción</label>
-            <input type="text" class="form-control" name="info" id="info" placeholder="Informacion extra">
+            <input type="text" class="form-control" name="info" id="info" placeholder="Información extra">
+          </div>
+          <div class="form-group">
+            <label for="images">Imagenes</label>
+            <input type="file" name="images[]" id="images" accept="image/jpeg" multiple>
           </div>
           <label for="dropdown-genre">Genero:</label>
           <select class="form-control" id="dropdown-genre" name="genre">

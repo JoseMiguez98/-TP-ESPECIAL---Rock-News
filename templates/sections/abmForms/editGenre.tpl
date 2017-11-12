@@ -1,5 +1,5 @@
 <!-- Modal-Update -->
-<div class="modal fade" id="updateModal" role="dialog" >
+<div class="modal fade" id="abmModal" role="dialog" >
   <div class="modal-dialog">
 
     <!-- Modal content-->

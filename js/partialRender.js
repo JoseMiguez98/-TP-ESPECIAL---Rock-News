@@ -64,13 +64,20 @@ $(document).ready(function(){
   //Inserto/Actualizo datos en las tablas mediante AJAX
   $('.innerFooter').on('submit', '.refreshForm',  function(event){
     event.preventDefault();
-    let serializedData = $(this).serialize();
-    console.log(serializedData);
+    // let serializedData =
+    // console.log(serializedData);
     let action = $(this).data('target');
-    $.post(action, serializedData, function(data) {
-      let table = $(data).find()['prevObject'][0];
-      console.log(table);
-      $('.innerMain').html(table);
+    $.ajax({
+      'url' : action,
+      'data' : new FormData(this),
+      'contentType': false,
+      'processData': false,
+      'method' : 'POST',
+      'success' : function(data){
+        let table = $(data).find()['prevObject'][0];
+        console.log(table);
+        $('.innerMain').html(table);
+      }
     });
   });
 
@@ -105,7 +112,7 @@ $(document).ready(function(){
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
-        $('.innerModal').html(data);
+        $('.innerInfo').html(data);
         $('#infoModal').modal('toggle');
       }
     });
@@ -157,7 +164,7 @@ $(document).ready(function(){
       'contentType' : 'application/json; charset=utf-8',
       'success' : function(data, action){
         $('.innerModal').html(data);
-        $('.modal').modal('toggle');
+        $('#abmModal').modal('toggle');
       }
     })
   });

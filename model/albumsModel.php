@@ -19,7 +19,9 @@ class albumsModel extends Model
   function addAlbum($name, $year, $artist, $genre, $info){
     $id_genre = $this->getGenreID($genre);
     $sentence = $this->db->prepare("INSERT INTO `album`(`nombre`, `anio`, `artista`,`id_genero`, `descripcion`) VALUES (?,?,?,?,?)");
-    return $sentence->execute([$name, $year, $artist, $id_genre['id_genero'], $info]);
+    $sentence->execute([$name, $year, $artist, $id_genre['id_genero'], $info]);
+    //Retorno el ID autogenerado del album insertado para poder relacionar la imagen
+    return $this->db->lastInsertId();
   }
 
   function deleteAlbum($id_album){
@@ -39,10 +41,10 @@ class albumsModel extends Model
     return $id_genre_query->fetch(PDO::FETCH_ASSOC);
   }
 
-  function getInfo($album){
-    $sentence = $this->db->prepare("SELECT descripcion FROM album WHERE nombre=?");
-    $sentence->execute([$album[0]]);
-    return $sentence->fetch(PDO::FETCH_ASSOC);
+  function getImages($id_album){
+    $sentence = $this->db->prepare("SELECT ruta FROM imagen WHERE id_album=?");
+    $sentence->execute([$id_album]);
+    return $sentence->fetchAll(PDO::FETCH_ASSOC);
   }
 }
 ?>
