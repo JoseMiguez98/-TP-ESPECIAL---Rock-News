@@ -1,5 +1,6 @@
 <?php
-require_once '../database/db-config.php';
+define('__ROOT__', dirname(dirname(__FILE__)));
+require_once (__ROOT__.'/database/db-config.php');
 //Clase encargada de controlar todo lo que es logica y procesamiento de datos
 class Model
 {

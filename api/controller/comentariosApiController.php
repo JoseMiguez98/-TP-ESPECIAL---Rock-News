@@ -58,6 +58,23 @@ class comentariosApiController extends ApiController
       break;
     }
   }
+
+  function create($params=[]){
+    if (sizeof($params) == 0){
+      $data = $this->getJSONData();
+      if(!empty($data)){
+        $id_album = $data[0]->id_album;
+        $comentario = $data[0]->comentario;
+        $puntaje = $data[0]->puntaje;
+        $this->model->createComentario($id_album, $comentario, $puntaje);
+        return $this->json_response('Comentario posteado con exito!', 200);
+      }
+      else{
+        return $this->json_response(false, 400);
+      }
+    }
+    return $this->json_response(false, 400);
+  }
 }
 
 ?>

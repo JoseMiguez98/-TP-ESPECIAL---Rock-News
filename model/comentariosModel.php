@@ -21,6 +21,12 @@ class comentariosModel extends Model
     $sentencia->execute([$id_comentario]);
     return true;
   }
+
+  function createComentario($id_album, $comentario, $puntaje){
+    $sentencia = $this->db->prepare('INSERT INTO comentario(id_album,comentario,puntaje) VALUES(?,?,?)');
+    $sentencia->execute([$id_album, $comentario, $puntaje]);
+    return true;
+  }
 }
 
  ?>
