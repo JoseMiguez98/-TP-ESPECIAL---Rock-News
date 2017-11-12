@@ -17,10 +17,17 @@ class albumsView extends View
     $this->smarty->display('templates/sections/albums.tpl');
   }
 
-  function showInfo($album){
+  function showInfo($album, $user_permissions){
     $this->smarty->assign('album', $album);
     $this->smarty->assign('first', true);
+    $this->smarty->assign('user_permissions', $user_permissions);
     return $this->smarty->display('templates/sections/infoModal.tpl');
+  }
+
+  //Muestra las imagenes del album
+  function showImages($images){
+    $this->smarty->assign('images', $images);
+    return $this->smarty->display('templates/sections/deleteImages.tpl');
   }
 }
 ?>

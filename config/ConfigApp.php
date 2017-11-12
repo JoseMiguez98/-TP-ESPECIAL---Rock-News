@@ -23,7 +23,9 @@
       'logout' => 'loginController#destroy',
       'permissionsTable' => 'permissionsController#show',
       'changePermissions' => 'permissionsController#change',
-      'deleteUser' => 'userController#delete'
+      'deleteUser' => 'userController#delete',
+      'showImages' => 'albumsController#displayImages',
+      'deleteImages' => 'albumsController#deleteImages'
     ];
   }
 ?>

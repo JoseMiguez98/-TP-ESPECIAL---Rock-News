@@ -169,6 +169,36 @@ $(document).ready(function(){
     })
   });
 
+  //Traigo el formulario para borrar imagenes de un album con AJAX
+  $('.innerMain').on('click', '#deleteImagesForm-btn',  function(){
+    event.preventDefault();
+    let id_album = $(this).data('target');
+    $.ajax({
+      'url' : 'showImages/'+id_album,
+      'method' : 'GET',
+      'success' : function(data){
+        $('#infoModalBody').html(data);
+        $('#deleteImagesForm-btn').remove();
+      }
+    });
+  });
+
+  //Borra imagenes de un album con AJAX
+  $('.innerMain').on('submit', '#deleteImagesForm',  function(){
+    event.preventDefault();
+    let id_album = $(this).data('target');
+    $.ajax({
+      'url' : 'deleteImages/'+id_album,
+      'data' : new FormData(this),
+      'contentType': false,
+      'processData': false,
+      'method' : 'POST',
+      'success' : function(data){
+        $('#infoModalBody').html(data);
+      }
+    });
+  });
+
 
   //AJAX trae la HOME cuando se carga el documento
   $.ajax({

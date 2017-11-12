@@ -84,11 +84,11 @@ class albumsController extends securedController
 
   function info($id_album){
     $album = $this->model->getAlbum($id_album[0]);
-    $images = $this->model->getImages($id_album[0]);
+    $images = $this->imagesModel->getImages($id_album[0]);
     if($images){
       $album['imagenes'] = $images;
     }
-    return $this->view->showInfo($album);
+    return $this->view->showInfo($album, $this->user_permissions);
   }
 
   private function addImages($id_album){
@@ -103,6 +103,26 @@ class albumsController extends securedController
       $this->imagesModel->saveImage($id_album, $tempDir);
     }
     return true;
+  }
+
+  public function displayImages($id_album){
+    $images = $this->imagesModel->getImages($id_album[0]);
+    $this->view->showImages($images);
+  }
+
+  public function deleteImages($id_album){
+    if($this->user_permissions == 1){
+      $imagesID = $_POST['imageCheck'];
+      foreach ($imagesID as $id_image) {
+        $this->imagesModel->deleteImage($id_image);
+      }
+      return $this->displayImages($id_album);
+    }
+
+    //Controlar excepcion si sobra tiempo
+    else{
+      header('Location:'.HOME);
+    }
   }
 }
 ?>

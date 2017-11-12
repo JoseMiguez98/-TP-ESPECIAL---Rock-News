@@ -40,11 +40,5 @@ class albumsModel extends Model
     $id_genre_query->execute([$genre]);
     return $id_genre_query->fetch(PDO::FETCH_ASSOC);
   }
-
-  function getImages($id_album){
-    $sentence = $this->db->prepare("SELECT ruta FROM imagen WHERE id_album=?");
-    $sentence->execute([$id_album]);
-    return $sentence->fetchAll(PDO::FETCH_ASSOC);
-  }
 }
 ?>

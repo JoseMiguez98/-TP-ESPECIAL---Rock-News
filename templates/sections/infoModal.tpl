@@ -6,7 +6,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="infoLabel">{$album['nombre']}</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="infoModalBody">
         <div class="row">
           <!-- Imagenes del album -->
           <div class="col-lg-4 col-md-4">
@@ -50,7 +50,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        {if $user_permissions eq 1}
+        <center><button data-target="{$album['id_album']}" id="deleteImagesForm-btn" type="button" class="btn-success">Borrar Imagenes</button></center>
+        {/if}
       </div>
     </div>
   </div>
