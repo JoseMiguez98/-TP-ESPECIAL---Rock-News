@@ -5,13 +5,13 @@
 class albumsModel extends Model
 {
   function getAlbum($id){
-    $sentence = $this->db->prepare('select * from album where id_album=?');
+    $sentence = $this->db->prepare('SELECT * FROM album WHERE id_album=?');
     $sentence->execute([$id]);
     return $sentence->fetch(PDO::FETCH_ASSOC);
   }
 
   function getAlbums(){
-    $sentence = $this->db->prepare('select * from album');
+    $sentence = $this->db->prepare('SELECT * FROM album');
     $sentence->execute();
     return $sentence->fetchAll(PDO::FETCH_ASSOC);
   }

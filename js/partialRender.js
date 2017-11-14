@@ -214,7 +214,7 @@ $(document).ready(function(){
   $('.innerMain').on('click', '#showCommentsAncor',  function(e){
     e.preventDefault();
     let id_album = $(this).data('target');
-    $.ajax('api/comentarios/'+id_album)
+    $.ajax('api/albums/'+id_album+'/comentarios')
     .done(function (data) {
       let renderedTemplate = Mustache.render(templateComments, {comentarios:data})
       $('.innerMain #deleteImagesForm-btn').hide();

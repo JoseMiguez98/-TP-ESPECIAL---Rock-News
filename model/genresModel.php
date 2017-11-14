@@ -10,7 +10,7 @@ class genresModel extends Model
   }
 
   function deleteGenre($id_genre){
-    $sentence = $this->db->prepare("delete from genero where id_genero=?");
+    $sentence = $this->db->prepare("DELETE FROM genero WHERE id_genero=?");
     return $sentence->execute([$id_genre]);
   }
 
@@ -20,13 +20,13 @@ class genresModel extends Model
   }
 
   function getGenres(){
-    $sentence = $this->db->prepare('select * from genero');
+    $sentence = $this->db->prepare('SELECT * FROM genero');
     $sentence->execute();
     return $sentence->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function getGenre($id){
-    $sentence = $this->db->prepare('select * from genero where id_genero=?');
+    $sentence = $this->db->prepare('SELECT * FROM genero WHERE id_genero=?');
     $sentence->execute([$id]);
     return $sentence->fetch(PDO::FETCH_ASSOC);
   }
@@ -35,7 +35,7 @@ class genresModel extends Model
     $albums_with_genres=[];
     //Para cada album le pido su correspondiente genero en base al id_genero
     foreach ($albums as $album) {
-      $sentence = $this->db->prepare('select nombre from genero where id_genero=?');
+      $sentence = $this->db->prepare('SELECT nombre FROM genero WHERE id_genero=?');
       $sentence->execute([$album['id_genero']]);
       //Inserto el nombre del genero en el album
       $album['genero'] = $sentence->fetch(PDO::FETCH_ASSOC)['nombre'];

@@ -6,7 +6,10 @@ class ConfigApi
   public static $RESOURCES = [
     'comentarios#GET'=> 'comentariosApiController#get',
     'comentarios#DELETE'=> 'comentariosApiController#delete',
-    'comentarios#POST'=> 'comentariosApiController#create'
+    'comentarios#POST'=> 'comentariosApiController#create',
+    'albums#GET'=> 'albumsApiController#get',
+    'albums#DELETE'=> 'albumsApiController#delete',
+    'albums#POST'=> 'albumsApiController#create'
   ];
 }
 ?>

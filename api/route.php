@@ -5,6 +5,7 @@ require_once 'config/ConfigApi.php';
 require_once '../model/Model.php';
 require_once 'controller/ApiController.php';
 require_once 'controller/comentariosApiController.php';
+require_once 'controller/albumsApiController.php';
 
 function parseURL($url)
 {
