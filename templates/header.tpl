@@ -42,7 +42,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$user}} <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="logout" target="_self">Cerrar sesión</a></li>
+                  <li><a href="logout" class="glyphicon glyphicon-log-out" target="_self"> Cerrar sesión</a></li>
                 </ul>
               </li>
             </ul>

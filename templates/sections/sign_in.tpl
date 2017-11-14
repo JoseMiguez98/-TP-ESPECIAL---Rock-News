@@ -1,4 +1,5 @@
 <div class="dataMain">
+  <h1 class="text-warning">Iniciar sesión:</h1>
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
     {if isset($error)}
     <div class="alert alert-danger" role="alert">{{$error}}</div>

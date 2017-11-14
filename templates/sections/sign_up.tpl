@@ -1,4 +1,5 @@
 <div class="dataMain">
+  <h1 class="text-warning">Registrate acá:</h1>
   <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
     <form class="sessionForm" method='post' data-target="createUser">
       <div class="form-group">
