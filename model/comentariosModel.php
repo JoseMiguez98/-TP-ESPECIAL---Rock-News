@@ -11,9 +11,9 @@ class comentariosModel extends Model
   }
 
   function getComentario($id_comentario){
-    $sentencia = $this->db->prepare('SELECT * FROM comentario WHERE id_comentario=?');
+    $sentencia = $this->db->prepare('SELECT * FROM comentario WHERE id_album=?');
     $sentencia->execute([$id_comentario]);
-    return $sentencia->fetch(PDO::FETCH_ASSOC);
+    return $sentencia->fetchAll(PDO::FETCH_ASSOC);
   }
 
   function deleteComentario($id_comentario){

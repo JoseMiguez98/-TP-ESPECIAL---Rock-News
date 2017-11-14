@@ -1,6 +1,11 @@
 $(document).ready(function(){
   "use strict";
 
+  //AJAX Trae el template de comentarios y lo deja disponible para su posterior uso
+  let templateComments;
+  $.ajax({ 'url': 'js/templates/comments.mst'})
+  .done( template => templateComments = template);
+
   //Función que parsea la data de AJAX y retorna un elemento del DOM
   function parseData(_data ,_content){
     let dataReturn;
@@ -181,6 +186,7 @@ $(document).ready(function(){
         $('#deleteImagesForm-btn').remove();
       }
     });
+    $('.innerMain #showCommentsAncor').remove();
   });
 
   //Borra imagenes de un album con AJAX
@@ -197,6 +203,26 @@ $(document).ready(function(){
         $('#infoModalBody').html(data);
       }
     });
+  });
+
+  //Trae la lista de comentarios para un album especifico con AJAX
+  $('.innerMain').on('click', '#showCommentsAncor',  function(e){
+    e.preventDefault();
+    let id_album = $(this).data('target');
+    $.ajax('api/comentarios/'+id_album)
+    .done(function (data) {
+      let renderedTemplate = Mustache.render(templateComments, {comentarios:data})
+      $('.innerMain #deleteImagesForm-btn').hide();
+      $('.innerMain #showCommentsAncor').hide();
+      $('.innerMain #innerComments').html(renderedTemplate);
+    })
+  });
+
+  //Oculta la lista de comentarios
+  $('.innerMain').on('click', '#closeCommentsAncor',  function(e){
+    $('.innerMain #comments').remove();
+    $('.innerMain #deleteImagesForm-btn').show();
+    $('.innerMain #showCommentsAncor').show();
   });
 
 

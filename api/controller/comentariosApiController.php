@@ -1,16 +1,19 @@
 <?php
 require_once '../model/comentariosModel.php';
+require_once '../model/userModel.php';
 
 /**
 *
 */
 class comentariosApiController extends ApiController
 {
+  private $userModel;
 
   function __construct()
   {
     parent::__construct();
     $this->model = new comentariosModel();
+    $this->userModel = new userModel();
   }
 
   function get($params=[]){
@@ -23,7 +26,14 @@ class comentariosApiController extends ApiController
       case 1:
       $data = $this->model->getComentario($params[0]);
       if($data){
-        return $this->json_response($data, 200);
+        //Array auxiliar
+        $dataUpdated=[];
+        //A cada comentario le creo una key 'usuario'con su correspondiente usuario
+        foreach ($data as $comment) {
+          $comment['usuario'] = $this->userModel->getUser($comment['id_usuario'])['nombre_usuario'];
+          array_push($dataUpdated, $comment);
+        }
+        return $this->json_response($dataUpdated, 200);
       }
       else{
         return $this->json_response(false, 404);

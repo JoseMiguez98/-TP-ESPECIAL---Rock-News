@@ -4,6 +4,12 @@
 */
 class userModel extends Model
 {
+  function getUser($id_usuario){
+    $sentence = $this->db->prepare('SELECT nombre_usuario FROM usuario WHERE id_usuario=?');
+    $sentence->execute([$id_usuario]);
+    return $sentence->fetch(PDO::FETCH_ASSOC);
+  }
+
   function getUsers(){
     $sentence = $this->db->prepare('SELECT * FROM usuario');
     $sentence->execute();
