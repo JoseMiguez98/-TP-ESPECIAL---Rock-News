@@ -200,7 +200,12 @@ $(document).ready(function(){
       'processData': false,
       'method' : 'POST',
       'success' : function(data){
-        $('#infoModalBody').html(data);
+        if(data == 'no_image_selected'){
+          alert("Por favor seleccione una imagen!");
+        }
+        else{
+          $('#infoModalBody').html(data);
+        }
       }
     });
   });

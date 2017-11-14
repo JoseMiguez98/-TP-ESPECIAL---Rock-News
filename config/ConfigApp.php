@@ -24,8 +24,8 @@
       'permissionsTable' => 'permissionsController#show',
       'changePermissions' => 'permissionsController#change',
       'deleteUser' => 'userController#delete',
-      'showImages' => 'albumsController#displayImages',
-      'deleteImages' => 'albumsController#deleteImages'
+      'showImages' => 'imagesController#displayImages',
+      'deleteImages' => 'imagesController#deleteImages'
     ];
   }
 ?>

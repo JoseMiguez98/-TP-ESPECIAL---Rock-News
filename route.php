@@ -14,6 +14,7 @@ require_once 'controller/loginController.php';
 require_once 'controller/modalController.php';
 require_once 'controller/permissionsController.php';
 require_once 'controller/userController.php';
+require_once 'controller/imagesController.php';
 
 function parseURL($url){
   //Explodeo la url para convertirla en un array
