@@ -183,10 +183,10 @@ $(document).ready(function(){
       'method' : 'GET',
       'success' : function(data){
         $('#infoModalBody').html(data);
-        $('#deleteImagesForm-btn').remove();
       }
     });
-    $('.innerMain #showCommentsAncor').remove();
+    $('#deleteImagesForm-btn').hide();
+    $('.innerMain #showCommentsAncor').hide();
   });
 
   //Borra imagenes de un album con AJAX
@@ -228,6 +228,19 @@ $(document).ready(function(){
     $('.innerMain #comments').remove();
     $('.innerMain #deleteImagesForm-btn').show();
     $('.innerMain #showCommentsAncor').show();
+  });
+
+  //Volver a la info del album desde la lista de imagenes con AJAX
+  $('.innerMain').on('click', '#backToInfoAncor',  function(e){
+    let id_album = $(this).data('target');
+    $.ajax('albumInfo/'+id_album)
+    .done(function(data){
+      //Obtengo solo el cuerpo del modal para no crearlo de nuevo
+      let body = $(data).find('#infoModalBody');
+      $('#infoModalBody').html(body.html());
+      $('#deleteImagesForm-btn').show();
+      $('.innerMain #showCommentsAncor').show();
+    })
   });
 
 

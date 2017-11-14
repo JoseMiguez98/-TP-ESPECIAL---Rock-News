@@ -13,3 +13,4 @@
     <center><button type="submit" class="btn-success" name="submit-btn">Borrar imagenes</button></center>
   </div>
 </form>
+<a href="#" id="backToInfoAncor" class="glyphicon glyphicon-menu-left" data-target="{$images[0]['id_album']}">Atras</a>
