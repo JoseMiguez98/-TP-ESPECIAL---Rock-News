@@ -4,12 +4,11 @@ require_once './view/albumsView.php';
 
 class imagesController extends securedController
 {
-  private $imagesModel;
 
   function __construct(){
     parent::__construct();
     $this->view = new albumsView();
-    $this->imagesModel = new imagesModel();
+    $this->model = new imagesModel();
   }
 
   private function addImages($id_album){
@@ -21,13 +20,13 @@ class imagesController extends securedController
     }
     //Almaceno cada una de las imagenes en la BBDD
     foreach ($_FILES['images']['tmp_name'] as $tempDir) {
-      $this->imagesModel->saveImage($id_album, $tempDir);
+      $this->model->saveImage($id_album, $tempDir);
     }
     return true;
   }
 
   public function displayImages($id_album){
-    $images = $this->imagesModel->getImages($id_album[0]);
+    $images = $this->model->getImages($id_album[0]);
     $this->view->showImages($id_album[0], $images);
   }
 
@@ -35,9 +34,20 @@ class imagesController extends securedController
     if($this->user_permissions == 1){
       if(isset($_POST['imageCheck']) && !empty($_POST['imageCheck'])){
         $imagesID = $_POST['imageCheck'];
+        $imagesPath=[];
+
         foreach ($imagesID as $id_image) {
-          $this->imagesModel->deleteImage($id_image);
+          $imagePath = $this->model->getImagePath($id_image);
+          $this->model->deleteImage($id_image);
+          //Guardo la ruta de todas las imagenes en un array auxiliar para luego eliminarlas del disco
+          array_push($imagesPath, $imagePath[0]['ruta']);
         }
+
+        //Elimino todas las imagenes del disco
+        foreach ($imagesPath as $path) {
+          unlink($path);
+        }
+
         return $this->displayImages($id_album);
       }
       return 'no_image_selected';
