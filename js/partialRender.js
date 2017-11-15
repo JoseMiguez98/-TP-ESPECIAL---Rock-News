@@ -253,10 +253,12 @@ $(document).ready(function(){
     let month = date.getMonth()+1;
     let day = date.getDate();
     let fecha_actual = year+"/"+month+"/"+day;
+    let captcha = $('input[name=captcha]').val();
     let comentario ={
       "id_album": $('#id_album').val(),
       "comentario": $('#commentBox').val(),
       "puntaje" : $('input[name=rate]:checked').val(),
+      "captcha" : captcha,
       "fecha" : fecha_actual
     };
     $.ajax({
@@ -270,6 +272,9 @@ $(document).ready(function(){
         401: function(){
           alert("Inicia sesión para comentar!");
         },
+        403: function(){
+          alert("Seguro que no eres un robot?")
+        }
       }
     })
     .done(function(data) {

@@ -78,32 +78,38 @@ class comentariosApiController extends securedApiController
   }
 
   function create($params=[]){
-    if(isset($_SESSION['usuario'])){
-      if (sizeof($params) == 0){
-        $data = $this->getJSONData();
-        if(!empty($data)){
-          $id_album = $data->id_album;
-          $comentario = $data->comentario;
-          $puntaje = $data->puntaje;
-          $fecha = $data->fecha;
-          $id_usuario = $_SESSION['id'];
-          if(!empty($comentario)){
-            $this->model->createComentario($id_album, $id_usuario, $comentario, $puntaje, $fecha);
-            return $this->json_response('Comentario posteado con exito!', 200);
+    $data = $this->getJSONData();
+    //Valido el captcha
+    if(isset($data->captcha)&&!empty($data->captcha)&&$_SESSION["code"]==$data->captcha){
+      if(isset($_SESSION['usuario'])){
+        if (sizeof($params) == 0){
+          if(!empty($data)){
+            $id_album = $data->id_album;
+            $comentario = $data->comentario;
+            $puntaje = $data->puntaje;
+            $fecha = $data->fecha;
+            $id_usuario = $_SESSION['id'];
+            if(!empty($comentario)){
+              $this->model->createComentario($id_album, $id_usuario, $comentario, $puntaje, $fecha);
+              return $this->json_response('Comentario posteado con exito!', 200);
+            }
+            //Si el campo comentario esta vacio retorno 400-Bad Request
+            return $this->json_response(false, 400);
           }
-          //Si el campo comentario esta vacio retorno 400-Bad Request
-          return $this->json_response(false, 400);
+          //Si no envian datos retorno 400-Bad request
+          else{
+            return $this->json_response(false, 400);
+          }
         }
-        //Si no envian datos retorno 400-Bad request
-        else{
-          return $this->json_response(false, 400);
-        }
+        //Si vienen parametros por POST retorno 400-Bad request
+        return $this->json_response(false, 400);
       }
-      //Si vienen parametros por POST retorno 400-Bad request
-      return $this->json_response(false, 400);
+      //Si no esta loggeado retorno 401-Unauthorized
+      return $this->json_response(false, 401);
     }
-    //Si no esta loggeado retorno 401-Unauthorized
-    return $this->json_response(false, 401);
+    //Si el captcha es incorrecto
+    return $this->json_response(false, 403);
+
   }
 }
 
