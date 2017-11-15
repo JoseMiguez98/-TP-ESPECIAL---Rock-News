@@ -7,6 +7,10 @@
         <input type="text" class="form-control" name="userName" id="user_name" placeholder="heisenberg" required>
       </div>
       <div class="form-group">
+        <label for="user_email">Email</label>
+        <input type="email" class="form-control" name="userEmail" id="user_email" placeholder="ejemplo@gmail.com" required>
+      </div>
+      <div class="form-group">
         <label for="user_password">Password</label>
         <input type="password" class="form-control" name="userPassword" id="user_password" required>
       </div>

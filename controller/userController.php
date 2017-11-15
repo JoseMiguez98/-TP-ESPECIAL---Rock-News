@@ -13,10 +13,12 @@ class userController extends securedController
   }
 
   function create(){
-    if(!empty($_POST['userName']) && !empty($_POST['userPassword'])){
+    if(isset($_POST['userName']) && !empty($_POST['userName']) && isset($_POST['userPassword']) && !empty($_POST['userPassword']) && isset($_POST['userEmail']) && !empty($_POST['userEmail']))
+    {
       $user_name = $_POST['userName'];
       $user_password = $_POST['userPassword'];
-      $this->model->createUser($user_name, $user_password);
+      $user_email = $_POST['userEmail'];
+      $this->model->createUser($user_name, $user_email, $user_password);
       return 'success_registered';
     }
   }

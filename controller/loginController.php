@@ -10,7 +10,7 @@ class loginController extends Controller
   }
 
   function verify(){
-    $user = $_POST['userName'];
+    $user = $_POST['userNameOrMail'];
     $password = $_POST['userPassword'];
     if(!empty($user) && !empty($password)){
       $user = $this->model->getUser($user);
