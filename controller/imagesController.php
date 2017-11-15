@@ -28,7 +28,7 @@ class imagesController extends securedController
 
   public function displayImages($id_album){
     $images = $this->imagesModel->getImages($id_album[0]);
-    $this->view->showImages($images);
+    $this->view->showImages($id_album[0], $images);
   }
 
   public function deleteImages($id_album){

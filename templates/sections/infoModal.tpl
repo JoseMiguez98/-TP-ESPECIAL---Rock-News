@@ -52,7 +52,9 @@
       <div class="modal-footer">
         <a id="showCommentsAncor" class="pull-right" href="#" data-target="{$album['id_album']}">Ver Comentarios</a>
         {if $user_permissions eq 1}
+        {if isset($album['imagenes'])}
         <a href="" id="deleteImagesForm-btn" class="pull-left" data-target="{$album['id_album']}">Borrar Imagenes</a>
+        {/if}
         {/if}
         <div id="innerComments"><!--Seran inyectados los comentarios traidos desde la API--></div>
       </div>

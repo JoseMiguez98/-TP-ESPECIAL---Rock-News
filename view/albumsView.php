@@ -25,7 +25,8 @@ class albumsView extends View
   }
 
   //Muestra las imagenes del album
-  function showImages($images){
+  function showImages($id_album, $images){
+    $this->smarty->assign('id_album', $id_album);
     $this->smarty->assign('images', $images);
     return $this->smarty->display('templates/sections/deleteImages.tpl');
   }
