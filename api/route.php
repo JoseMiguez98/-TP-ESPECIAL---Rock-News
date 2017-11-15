@@ -6,6 +6,7 @@ require_once '../model/Model.php';
 require_once 'controller/ApiController.php';
 require_once 'controller/comentariosApiController.php';
 require_once 'controller/albumsApiController.php';
+require_once 'controller/securedApiController.php';
 
 function parseURL($url)
 {

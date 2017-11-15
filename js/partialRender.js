@@ -263,6 +263,14 @@ $(document).ready(function(){
       'url' : 'api/comentarios',
       'method' : 'POST',
       'data' : JSON.stringify(comentario),
+      'statusCode' : {
+        400: function(){
+          alert("El campo comentario esta vacio!");
+        },
+        401: function(){
+          alert("Inicia sesión para comentar!");
+        },
+      }
     })
     .done(function(data) {
       //Luego de cargar el nuevo comentario en la BBDD traigo de nuevo la lista para refrescarlos
@@ -289,7 +297,12 @@ $(document).ready(function(){
     let id_album = $(this).data('target');
     $.ajax({
       'url':'api/comentarios/'+id_comentario,
-      'method':'DELETE'
+      'method':'DELETE',
+      'statusCode': {
+        401 : function(){
+          alert("No tienes permisos para borrar comentarios!");
+        }
+      }
     })
     //Si se elimina el comentario con exito vuelvo a traerlos para refrescar la lista
     .done(function(){

@@ -1,11 +1,11 @@
 <?php
 require_once '../model/comentariosModel.php';
 require_once '../model/userModel.php';
-
+require_once 'securedApiController.php';
 /**
 *
 */
-class comentariosApiController extends ApiController
+class comentariosApiController extends securedApiController
 {
   private $userModel;
 
@@ -49,47 +49,61 @@ class comentariosApiController extends ApiController
   }
 
   function delete($params=[]){
-    switch (sizeof($params)) {
-      case 0:
-      return $this->json_response(false, 400);
-      break;
+    if($this->user_permissions == 1){
+      switch (sizeof($params)) {
+        case 0:
+        return $this->json_response(false, 400);
+        break;
 
-      case 1:
-      $data = $this->model->getComentario($params[0]);
-      if($data){
-        $this->model->deleteComentario($params[0]);
-        return $this->json_response('Comentario eliminado con exito', 200);
-      }
-      else{
-        return $this->json_response(false, 404);
-      }
-      break;
+        case 1:
+        $data = $this->model->getComentario($params[0]);
+        if($data){
+          $this->model->deleteComentario($params[0]);
+          return $this->json_response('Comentario eliminado con exito', 200);
+        }
+        else{
+          return $this->json_response(false, 404);
+        }
+        break;
 
-      default:
-      return $this->json_response(false, 400);
-      break;
+        default:
+        return $this->json_response(false, 400);
+        break;
+      }
+    }
+    //Si no tiene permisos retorno 401-Unauthorized
+    else{
+      return $this->json_response(false, 401);
     }
   }
 
   function create($params=[]){
-    //Luego hacer refactor de la session al crear securedApiController
-    session_start();
-    if (sizeof($params) == 0){
-      $data = $this->getJSONData();
-      if(!empty($data)){
-        $id_album = $data->id_album;
-        $comentario = $data->comentario;
-        $puntaje = $data->puntaje;
-        $fecha = $data->fecha;
-        $id_usuario = $_SESSION['id'];
-        $this->model->createComentario($id_album, $id_usuario, $comentario, $puntaje, $fecha);
-        return $this->json_response('Comentario posteado con exito!', 200);
+    if(isset($_SESSION['usuario'])){
+      if (sizeof($params) == 0){
+        $data = $this->getJSONData();
+        if(!empty($data)){
+          $id_album = $data->id_album;
+          $comentario = $data->comentario;
+          $puntaje = $data->puntaje;
+          $fecha = $data->fecha;
+          $id_usuario = $_SESSION['id'];
+          if(!empty($comentario)){
+            $this->model->createComentario($id_album, $id_usuario, $comentario, $puntaje, $fecha);
+            return $this->json_response('Comentario posteado con exito!', 200);
+          }
+          //Si el campo comentario esta vacio retorno 400-Bad Request
+          return $this->json_response(false, 400);
+        }
+        //Si no envian datos retorno 400-Bad request
+        else{
+          return $this->json_response(false, 400);
+        }
       }
-      else{
-        return $this->json_response(false, 400);
-      }
+      //Si vienen parametros por POST retorno 400-Bad request
+      return $this->json_response(false, 400);
     }
-    return $this->json_response(false, 400);
+    //Si no esta loggeado retorno 401-Unauthorized
+    return $this->json_response(false, 401);
   }
 }
 

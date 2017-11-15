@@ -21,6 +21,7 @@ abstract class ApiController{
       200 => "OK",
       404 => "Not found",
       400 => "Bad request",
+      401 => "Unauthorized",
       500 => "Internal Server Error"
     );
     return ($status[$code])? $status[$code] : $status[500];

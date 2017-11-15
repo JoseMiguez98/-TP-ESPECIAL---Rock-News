@@ -3,6 +3,7 @@ require_once '../model/albumsModel.php';
 require_once '../model/comentariosModel.php';
 require_once '../model/userModel.php';
 require_once '../model/genresModel.php';
+require_once 'securedApiController.php';
 
 /**
 *
