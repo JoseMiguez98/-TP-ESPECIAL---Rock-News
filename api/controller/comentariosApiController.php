@@ -72,13 +72,17 @@ class comentariosApiController extends ApiController
   }
 
   function create($params=[]){
+    //Luego hacer refactor de la session al crear securedApiController
+    session_start();
     if (sizeof($params) == 0){
       $data = $this->getJSONData();
       if(!empty($data)){
-        $id_album = $data[0]->id_album;
-        $comentario = $data[0]->comentario;
-        $puntaje = $data[0]->puntaje;
-        $this->model->createComentario($id_album, $comentario, $puntaje);
+        $id_album = $data->id_album;
+        $comentario = $data->comentario;
+        $puntaje = $data->puntaje;
+        $fecha = $data->fecha;
+        $id_usuario = $_SESSION['id'];
+        $this->model->createComentario($id_album, $id_usuario, $comentario, $puntaje, $fecha);
         return $this->json_response('Comentario posteado con exito!', 200);
       }
       else{

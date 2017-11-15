@@ -216,6 +216,8 @@ $(document).ready(function(){
     let id_album = $(this).data('target');
     $.ajax('api/albums/'+id_album+'/comentarios')
     .done(function (data) {
+      data['id_album'] = id_album;
+      console.log(data);
       let renderedTemplate = Mustache.render(templateComments, {comentarios:data})
       $('.innerMain #deleteImagesForm-btn').hide();
       $('.innerMain #showCommentsAncor').hide();
@@ -243,6 +245,42 @@ $(document).ready(function(){
     })
   });
 
+  //Crear un nuevo comentario desde la API usando AJAX
+  $('.innerMain').on('submit', '#postCommentForm',  function(e){
+    e.preventDefault();
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let fecha_actual = year+"/"+month+"/"+day;
+    let comentario ={
+         "id_album": $('#id_album').val(),
+         "comentario": $('#commentBox').val(),
+         "puntaje" : $('input[name=rate]:checked').val(),
+         "fecha" : fecha_actual
+      };
+     $.ajax({
+       'url' : 'api/comentarios',
+       'method' : 'POST',
+       'data' : JSON.stringify(comentario),
+     })
+     .done(function(data) {
+          //Luego de cargar el nuevo comentario en la BBDD traigo de nuevo la lista para refrescarlos
+          let id_album = $('#id_album').val();
+          $.ajax('api/albums/'+id_album+'/comentarios')
+          .done(function(data){
+            data['id_album'] = id_album;
+            let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
+            $('.innerMain #innerComments').html(renderedTemplate);
+          })
+          .fail(function(){
+            alert("Se produjo un error al traer lo comentarios!")
+          })
+        })
+        .fail(function() {
+            alert('Hubo un error al postear su comentario!');
+        });
+  });
 
   //AJAX trae la HOME cuando se carga el documento
   $.ajax({

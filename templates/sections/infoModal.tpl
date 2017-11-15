@@ -54,11 +54,7 @@
         {if $user_permissions eq 1}
         <a href="" id="deleteImagesForm-btn" class="pull-left" data-target="{$album['id_album']}">Borrar Imagenes</a>
         {/if}
-        <div class="row">
-          <div class="col-lg-12 col-md-12">
-            <div id="innerComments"><!--Seran inyectados los comentarios traidos desde la API--></div>
-          </div>
-        </div>
+        <div id="innerComments"><!--Seran inyectados los comentarios traidos desde la API--></div>
       </div>
     </div>
   </div>
