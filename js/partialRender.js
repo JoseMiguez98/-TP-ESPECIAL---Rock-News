@@ -254,32 +254,58 @@ $(document).ready(function(){
     let day = date.getDate();
     let fecha_actual = year+"/"+month+"/"+day;
     let comentario ={
-         "id_album": $('#id_album').val(),
-         "comentario": $('#commentBox').val(),
-         "puntaje" : $('input[name=rate]:checked').val(),
-         "fecha" : fecha_actual
-      };
-     $.ajax({
-       'url' : 'api/comentarios',
-       'method' : 'POST',
-       'data' : JSON.stringify(comentario),
-     })
-     .done(function(data) {
-          //Luego de cargar el nuevo comentario en la BBDD traigo de nuevo la lista para refrescarlos
-          let id_album = $('#id_album').val();
-          $.ajax('api/albums/'+id_album+'/comentarios')
-          .done(function(data){
-            data['id_album'] = id_album;
-            let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
-            $('.innerMain #innerComments').html(renderedTemplate);
-          })
-          .fail(function(){
-            alert("Se produjo un error al traer lo comentarios!")
-          })
-        })
-        .fail(function() {
-            alert('Hubo un error al postear su comentario!');
-        });
+      "id_album": $('#id_album').val(),
+      "comentario": $('#commentBox').val(),
+      "puntaje" : $('input[name=rate]:checked').val(),
+      "fecha" : fecha_actual
+    };
+    $.ajax({
+      'url' : 'api/comentarios',
+      'method' : 'POST',
+      'data' : JSON.stringify(comentario),
+    })
+    .done(function(data) {
+      //Luego de cargar el nuevo comentario en la BBDD traigo de nuevo la lista para refrescarlos
+      let id_album = $('#id_album').val();
+      $.ajax('api/albums/'+id_album+'/comentarios')
+      .done(function(data){
+        //Le asigno la key id_album a la data para pasarsela a Mustache.
+        data['id_album'] = id_album;
+        let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
+        $('.innerMain #innerComments').html(renderedTemplate);
+      })
+      .fail(function(){
+        alert("Se produjo un error al traer lo comentarios!")
+      })
+    })
+    .fail(function() {
+      alert('Hubo un error al postear su comentario!');
+    });
+  });
+
+  //Borro un comentario desde la API con AJAX
+  $('.innerMain').on('click', '.deleteComentarioAncor',  function(e){
+    let id_comentario = $(this).attr('id');
+    let id_album = $(this).data('target');
+    $.ajax({
+      'url':'api/comentarios/'+id_comentario,
+      'method':'DELETE'
+    })
+    //Si se elimina el comentario con exito vuelvo a traerlos para refrescar la lista
+    .done(function(){
+      $.ajax('api/albums/'+id_album+'/comentarios')
+      .done(function(data){
+        data['id_album'] = id_album;
+        let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
+        $('.innerMain #innerComments').html(renderedTemplate);
+      })
+      .fail(function(){
+        alert("Se produjo un error al refrescar los comentarios")
+      })
+    })
+    .fail(function(){
+      alert("Se produjo un error al intentar eliminar el comentario!")
+    })
   });
 
   //AJAX trae la HOME cuando se carga el documento

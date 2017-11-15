@@ -10,6 +10,7 @@
       <div class="panel-heading">
         <strong class="pull-left">{{usuario}}</strong> <span class="text-muted">{{fecha}}</span>
         <span class="text-muted">Puntaje: {{puntaje}}</span>
+        <a href="#" class="deleteComentarioAncor" id={{id_comentario}} data-target="{{id_album}}">&nbsp<span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
       </div>
       <div class="panel-body">
         {{comentario}}
