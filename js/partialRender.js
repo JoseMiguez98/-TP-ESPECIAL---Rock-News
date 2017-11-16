@@ -216,7 +216,7 @@ $(document).ready(function(){
       $('.innerMain #innerComments').html(renderedTemplate);
     })
     .fail(function(){
-      alert("error");
+      alert("Todavia no hay comentarios para este album!");
     })
   });
 
