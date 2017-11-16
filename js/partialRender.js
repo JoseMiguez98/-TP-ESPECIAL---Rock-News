@@ -3,6 +3,7 @@ $(document).ready(function(){
 
   //AJAX Trae el template de comentarios y lo deja disponible para su posterior uso
   let templateComments;
+  let commentBox;
   $.ajax({ 'url': 'js/templates/comments.mst'})
   .done( template => templateComments = template);
 
@@ -33,7 +34,6 @@ $(document).ready(function(){
   $(".navLink").on("click", function(){
     event.preventDefault();
     let action = $(this).data('target');
-    console.log(action);
     $.ajax({
       'url' : action,
       "contentType" : "application/json; charset=utf-8",
@@ -47,7 +47,6 @@ $(document).ready(function(){
     event.preventDefault();
     let id = $(this).attr('id');
     let action = $(this).data('target');
-    console.log(action+'/'+id);
     $.ajax({
       'url' : action + '/' + id,
       "contentType" : "application/json; charset=utf-8",
@@ -95,13 +94,11 @@ $(document).ready(function(){
   //Filtrado de albums traidos con AJAX
   $('.innerMain').on('click','.genreFilter', function(){
     let filter = $(this).data('target');
-    console.log(filter);
     $.ajax({
       'url' : 'filterGenre/'+filter,
       "contentType" : "application/json; charset=utf-8",
       "dataType" : "HTML",
       'success' : function(data){
-        console.log(data);
         inyect(data);
       }
     });
@@ -127,9 +124,7 @@ $(document).ready(function(){
   $('.innerMain').on('submit', '.sessionForm', function(event){
     event.preventDefault();
     let serializedData = $(this).serialize();
-    console.log(serializedData);
     let action = $(this).data('target');
-    console.log(action);
     // console.log(serializedData);
     //|===========================|//
     $.ajax({
@@ -161,9 +156,7 @@ $(document).ready(function(){
   $('.innerMain').on('click', '.toggle-modal-btn',  function(){
     event.preventDefault();
     let id_element = $(this).attr('id');
-    console.log(id_element);
     let element = $(this).data('target');
-    console.log(element);
     $.ajax({
       'url' : 'showModal'+'/'+element+'/'+id_element,
       'contentType' : 'application/json; charset=utf-8',
@@ -217,11 +210,13 @@ $(document).ready(function(){
     $.ajax('api/albums/'+id_album+'/comentarios')
     .done(function (data) {
       data['id_album'] = id_album;
-      console.log(data);
-      let renderedTemplate = Mustache.render(templateComments, {comentarios:data})
+      let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
       $('.innerMain #deleteImagesForm-btn').hide();
       $('.innerMain #showCommentsAncor').hide();
       $('.innerMain #innerComments').html(renderedTemplate);
+    })
+    .fail(function(){
+      alert("error");
     })
   });
 
@@ -285,14 +280,16 @@ $(document).ready(function(){
         //Le asigno la key id_album a la data para pasarsela a Mustache.
         data['id_album'] = id_album;
         let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
+        $('.innerMain #deleteImagesForm-btn').hide();
+        $('.innerMain #showCommentsAncor').hide();
         $('.innerMain #innerComments').html(renderedTemplate);
       })
       .fail(function(){
-        alert("Se produjo un error al traer lo comentarios!")
+        // alert("Se produjo un error al traer lo comentarios!")
       })
     })
     .fail(function() {
-      alert('Hubo un error al postear su comentario!');
+      // alert('Hubo un error al postear su comentario!');
     });
   });
 
@@ -311,18 +308,27 @@ $(document).ready(function(){
     })
     //Si se elimina el comentario con exito vuelvo a traerlos para refrescar la lista
     .done(function(){
-      $.ajax('api/albums/'+id_album+'/comentarios')
+      $.ajax({
+        'url': "api/albums/"+id_album+"/comentarios",
+        'method' : 'GET',
+        'statusCode': {
+          404 : function(){
+            $('.innerMain #comments').remove();
+            $('.innerMain #deleteImagesForm-btn').show();
+          }
+        }
+      })
       .done(function(data){
         data['id_album'] = id_album;
         let renderedTemplate = Mustache.render(templateComments, {comentarios:data});
         $('.innerMain #innerComments').html(renderedTemplate);
       })
       .fail(function(){
-        alert("Se produjo un error al refrescar los comentarios")
+        // alert("Se produjo un error al refrescar los comentarios");
       })
     })
     .fail(function(){
-      alert("Se produjo un error al intentar eliminar el comentario!")
+      // alert("Se produjo un error al intentar eliminar el comentario!");
     })
   });
 
